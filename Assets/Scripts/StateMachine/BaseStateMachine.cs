@@ -24,15 +24,20 @@ namespace Scripts.StateMachine
             _animator = GetComponentInChildren<Animator>();
         }
 
-        void Start()
+        private void Start()
+        {
+            SetState();
+
+            _fsm = new FSM();
+            _fsm.Start(_idleState);
+        }
+
+        protected virtual void SetState()
         {
             _idleState = IdleState;
             _runState = RunState;
             _hitState = HitState;
             _deathState = DeathState;
-
-            _fsm = new FSM();
-            _fsm.Start(_idleState);
         }
 
         public virtual void OnUpdate()

@@ -10,7 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2711331621715763831, guid: b85a83b7a5eb89942a6ad7273a08e652, type: 3}
       propertyPath: m_Name
-      value: Model
+      value: Model@Monster
+      objectReference: {fileID: 0}
+    - target: {fileID: 2711331621715763831, guid: b85a83b7a5eb89942a6ad7273a08e652, type: 3}
+      propertyPath: m_TagString
+      value: Monster
       objectReference: {fileID: 0}
     - target: {fileID: 3788331298038267313, guid: b85a83b7a5eb89942a6ad7273a08e652, type: 3}
       propertyPath: m_LocalPosition.x
@@ -52,6 +56,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4641373369135692964, guid: b85a83b7a5eb89942a6ad7273a08e652, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 4723107735738678597, guid: c1cdd26cc09ad224884556bc4d8296ae, type: 3}
+    - target: {fileID: 5041394320632218286, guid: b85a83b7a5eb89942a6ad7273a08e652, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 3dc503040d249024d9bfa9b299f58460, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

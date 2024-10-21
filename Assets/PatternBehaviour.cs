@@ -1,35 +1,13 @@
 using UnityEngine;
 
-public enum PlayerStateType
-{
-    Idle,
-    Run,
-    Hit,
-    Death,
-}
 
-public class PlayerBehaviour : StateMachineBehaviour
+public class PatternBehaviour : StateMachineBehaviour
 {
-    public PlayerStateType type;
-
+    public int number;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        switch(type)
-        {
-            case PlayerStateType.Idle:
-                animator.SetBool("Idle", true);
-                break;
-            case PlayerStateType.Run:
-                animator.SetBool("Run", true);
-                break;
-            case PlayerStateType.Hit:
-                animator.SetBool("Hit", true);
-                break;
-            case PlayerStateType.Death:
-                animator.SetBool("Death", true);
-                break;
-        }
+        animator.SetInteger("Pattern", number);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -41,21 +19,7 @@ public class PlayerBehaviour : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        switch (type)
-        {
-            case PlayerStateType.Idle:
-                animator.SetBool("Idle", false);
-                break;
-            case PlayerStateType.Run:
-                animator.SetBool("Run", false);
-                break;
-            case PlayerStateType.Hit:
-                animator.SetBool("Hit", false);
-                break;
-            case PlayerStateType.Death:
-                animator.SetBool("Death", false);
-                break;
-        }
+        animator.SetInteger("Pattern", 0);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

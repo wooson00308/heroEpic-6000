@@ -4,6 +4,24 @@ namespace Scripts.StateMachine
 {
     public class Player : BaseStateMachine
     {
+        public static Player s_player;
+
+        private void OnEnable()
+        {
+            if (s_player == null || !s_player.GetInstanceID().Equals(GetInstanceID()))
+            {
+                s_player = this;
+            } 
+        }
+
+        private void OnDisable()
+        {
+            if(s_player.GetInstanceID().Equals(GetInstanceID()))
+            {
+                s_player = null;
+            }
+        }
+
         Vector2 _input = Vector2.zero;
         private Vector2 GetInput()
         {

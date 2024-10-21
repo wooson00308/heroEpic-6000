@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Unit@Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5065884197827778880, guid: 34950459f5c759640889bb1e3afda15a, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7413031855206635387, guid: 34950459f5c759640889bb1e3afda15a, type: 3}
       propertyPath: model
       value: 
