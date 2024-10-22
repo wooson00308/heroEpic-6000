@@ -57,11 +57,33 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3239bb6058a16b24982bc99fdb2a9609, type: 3}
+--- !u!114 &1699457448755952907 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3898076733359537843, guid: 3239bb6058a16b24982bc99fdb2a9609, type: 3}
+  m_PrefabInstance: {fileID: 2417711348501791672}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f23bf56ce48fb448a6d46082df8048e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6102622117674405585 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8448103995050659177, guid: 3239bb6058a16b24982bc99fdb2a9609, type: 3}
   m_PrefabInstance: {fileID: 2417711348501791672}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8161638430654358987 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5822759870083180147, guid: 3239bb6058a16b24982bc99fdb2a9609, type: 3}
+  m_PrefabInstance: {fileID: 2417711348501791672}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b065b353ff106c4f9d63712d04a367e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5593224831876119199
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -126,6 +148,14 @@ PrefabInstance:
       propertyPath: model
       value: 
       objectReference: {fileID: 6102622117674405585}
+    - target: {fileID: 7413031855206635387, guid: 34950459f5c759640889bb1e3afda15a, type: 3}
+      propertyPath: hitBoxCaster
+      value: 
+      objectReference: {fileID: 1699457448755952907}
+    - target: {fileID: 7413031855206635387, guid: 34950459f5c759640889bb1e3afda15a, type: 3}
+      propertyPath: hitBoxReceiver
+      value: 
+      objectReference: {fileID: 8161638430654358987}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -161,7 +191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chaseDistance: 999
   minChaseDistance: 0.3
-  marginMinChaseDistance: 0.1
+  chaseBufferRange: 0
   patternConditions:
   - partternNumber: 1
     distance: 0.5

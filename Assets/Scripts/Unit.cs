@@ -13,12 +13,28 @@ namespace Scripts
 
         [Header("HitBox")]
         public HitBoxCaster hitBoxCaster;
+        public HitBoxReceiver hitBoxReceiver;
 
         public int Health { get; set; }
         public float RunSpeed { get; set; }
 
         [Range(0, 1f)]
         public float _backMoveDecreasePercent;
+
+        private void OnEnable()
+        {
+            hitBoxReceiver.OnHitReceive += OnHitEvent;
+        }
+
+        private void OnDisable()
+        {
+            hitBoxReceiver.OnHitReceive -= OnHitEvent;
+        }
+
+        private void OnHitEvent(HitBoxData data)
+        {
+            OnHit(null);
+        }
 
         private void Awake()
         {

@@ -16,7 +16,7 @@ public class HitBoxCaster : MonoBehaviour
     public HitBox[] HitBoxes;
     public Action<HitBoxData> OnHitCast;
     private HashSet<Rigidbody2D> _castedRigidbodies = new();
-    void OnDisable()
+    void OnEnable()
     {
         _castedRigidbodies.Clear();
         _castedRigidbodies.Add(_rigidbodyToIgnore);

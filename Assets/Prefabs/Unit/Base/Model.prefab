@@ -42,6 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2701070805498780458}
   - component: {fileID: 1252550094820480683}
+  - component: {fileID: 1964909509391744910}
   m_Layer: 0
   m_Name: '[HitBox Receiver]'
   m_TagString: Untagged
@@ -82,6 +83,33 @@ MonoBehaviour:
     m_Bits: 0
   Collider:
   - {fileID: 3901206171146736478}
+--- !u!50 &1964909509391744910
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617020313943027898}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &2711331621715763831
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,7 +121,6 @@ GameObject:
   - component: {fileID: 3788331298038267313}
   - component: {fileID: 4641373369135692964}
   - component: {fileID: 5041394320632218286}
-  - component: {fileID: 4977230385829737122}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -196,33 +223,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!50 &4977230385829737122
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2711331621715763831}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1 &2729594887893757571
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,7 +480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f23bf56ce48fb448a6d46082df8048e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rigidbodyToIgnore: {fileID: 4977230385829737122}
+  _rigidbodyToIgnore: {fileID: 1964909509391744910}
   HitableLayer:
     serializedVersion: 2
     m_Bits: 4294967295
