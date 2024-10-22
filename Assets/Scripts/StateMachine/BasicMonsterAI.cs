@@ -1,86 +1,75 @@
-using Scripts;
 using UnityEngine;
-using UnityEngine.Windows;
 
-public class BasicMonsterAI : MonsterAI
+namespace Scripts.StateMachine
 {
-    protected override void Pattern1State(FSM fsm, FSM.Step step, FSM.State state) 
+    public class BasicMonsterAI : MonsterAI
     {
-        if (_animator.GetInteger("Pattern") > 0) return;
-        if (step == FSM.Step.Enter)
+        protected bool _onDistanceInReadyPattern = false;
+
+        private void TryPatternState(FSM.Step step, int animHash, int patternNum)
         {
-            _animator.CrossFade(_pattern1Hash, 0f);
-        }
-        else if (step == FSM.Step.Update)
-        {
-            if (_animator.GetInteger("Pattern") != 1)
+            if (_animator.GetInteger("Pattern") > 0) return;
+            if (step == FSM.Step.Enter)
             {
-                TransitionToRunOrIdle();
+                _animator.CrossFade(_runHash, 0f);
+            }
+            else if (step == FSM.Step.Update)
+            {
+                if (_onDistanceInReadyPattern && _animator.GetInteger("Pattern") != patternNum)
+                {
+                    _readyPattern.ResetDelay();
+
+                    _onDistanceInReadyPattern = false;
+                    TransitionToRunOrIdle();
+
+                    return;
+                }
+
+                if (_readyPattern.IsDelaying) return;
+
+                if (!_onDistanceInReadyPattern)
+                {
+                    float distance = GetDistance();
+                    if (distance <= _readyPattern.distance)
+                    {
+                        _animator.CrossFade(animHash, 0f);
+                        _unit.Rotation(GetDirection().normalized);
+
+                        
+
+                        _onDistanceInReadyPattern = true;
+                    }
+                    else
+                    {
+                        Vector3 direction = GetDirection().normalized;
+                        _unit.Run(direction);
+                    }
+                }
+            }
+            else
+            {
+
             }
         }
-        else
-        {
 
+        protected override void Pattern1State(FSM fsm, FSM.Step step, FSM.State state) 
+        {
+            TryPatternState(step, _pattern1Hash, 1);
         }
-    }
 
-    protected override void Pattern2State(FSM fsm, FSM.Step step, FSM.State state)
-    {
-        if (_animator.GetInteger("Pattern") > 0) return;
-        if (step == FSM.Step.Enter)
+        protected override void Pattern2State(FSM fsm, FSM.Step step, FSM.State state)
         {
-            _animator.CrossFade(_pattern2Hash, 0f);
+            TryPatternState(step, _pattern2Hash, 2);
         }
-        else if (step == FSM.Step.Update)
-        {
-            if (_animator.GetInteger("Pattern") != 2)
-            {
-                TransitionToRunOrIdle();
-            }
-        }
-        else
-        {
 
+        protected override void Pattern3State(FSM fsm, FSM.Step step, FSM.State state)
+        {
+            TryPatternState(step, _pattern3Hash, 3);
         }
-    }
 
-    protected override void Pattern3State(FSM fsm, FSM.Step step, FSM.State state)
-    {
-        if (_animator.GetInteger("Pattern") > 0) return;
-        if (step == FSM.Step.Enter)
+        protected override void Pattern4State(FSM fsm, FSM.Step step, FSM.State state)
         {
-            _animator.CrossFade(_pattern3Hash, 0f);
-        }
-        else if (step == FSM.Step.Update)
-        {
-            if (_animator.GetInteger("Pattern") != 3)
-            {
-                TransitionToRunOrIdle();
-            }
-        }
-        else
-        {
-
-        }
-    }
-
-    protected override void Pattern4State(FSM fsm, FSM.Step step, FSM.State state)
-    {
-        if (_animator.GetInteger("Pattern") > 0) return;
-        if (step == FSM.Step.Enter)
-        {
-            _animator.CrossFade(_pattern4Hash, 0f);
-        }
-        else if (step == FSM.Step.Update)
-        {
-            if (_animator.GetInteger("Pattern") != 4)
-            {
-                TransitionToRunOrIdle();
-            }
-        }
-        else
-        {
-
+            TryPatternState(step, _pattern4Hash, 4);
         }
     }
 }

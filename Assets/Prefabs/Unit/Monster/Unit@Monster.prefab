@@ -161,7 +161,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chaseDistance: 999
   minChaseDistance: 0.3
+  marginMinChaseDistance: 0.1
   patternConditions:
   - partternNumber: 1
     distance: 0.5
-    delay: 0.8
+    minDelay: 0
+    maxDelay: 0

@@ -8,10 +8,50 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1438866782732210646, guid: 78fe6ee1226ff1243b4effbb873dc2dd, type: 3}
+      propertyPath: chaseBufferRange
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438866782732210646, guid: 78fe6ee1226ff1243b4effbb873dc2dd, type: 3}
+      propertyPath: minChaseDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438866782732210646, guid: 78fe6ee1226ff1243b4effbb873dc2dd, type: 3}
+      propertyPath: patternConditions.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438866782732210646, guid: 78fe6ee1226ff1243b4effbb873dc2dd, type: 3}
+      propertyPath: patternConditions.Array.data[0].maxDelay
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438866782732210646, guid: 78fe6ee1226ff1243b4effbb873dc2dd, type: 3}
+      propertyPath: patternConditions.Array.data[0].minDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438866782732210646, guid: 78fe6ee1226ff1243b4effbb873dc2dd, type: 3}
+      propertyPath: patternConditions.Array.data[1].distance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438866782732210646, guid: 78fe6ee1226ff1243b4effbb873dc2dd, type: 3}
+      propertyPath: patternConditions.Array.data[1].maxDelay
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438866782732210646, guid: 78fe6ee1226ff1243b4effbb873dc2dd, type: 3}
+      propertyPath: patternConditions.Array.data[1].minDelay
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438866782732210646, guid: 78fe6ee1226ff1243b4effbb873dc2dd, type: 3}
+      propertyPath: patternConditions.Array.data[1].partternNumber
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3134295797565337060, guid: 78fe6ee1226ff1243b4effbb873dc2dd, type: 3}
       propertyPath: model
       value: 
       objectReference: {fileID: 5657119147146706861}
+    - target: {fileID: 3134295797565337060, guid: 78fe6ee1226ff1243b4effbb873dc2dd, type: 3}
+      propertyPath: _backMoveDecreasePercent
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 5382790921983498457, guid: 78fe6ee1226ff1243b4effbb873dc2dd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -121,6 +161,14 @@ PrefabInstance:
     - target: {fileID: 1262146111040172063, guid: 0148aa8e5222421469bbf942425a1092, type: 3}
       propertyPath: m_Name
       value: Model@Goblin
+      objectReference: {fileID: 0}
+    - target: {fileID: 1757000886736122850, guid: 0148aa8e5222421469bbf942425a1092, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4888964980496305963, guid: 0148aa8e5222421469bbf942425a1092, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
