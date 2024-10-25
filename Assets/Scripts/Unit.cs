@@ -54,7 +54,7 @@ namespace Scripts
             if (!_isHitable) yield break;
             _isHitable = false;
 
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.08f);
             _isHitable = true;
         }
 
