@@ -33,16 +33,14 @@ namespace Scripts.StateMachine
                     if (distance <= _readyPattern.distance)
                     {
                         _animator.CrossFade(animHash, 0f);
-                        _unit.Rotation(GetDirection().normalized);
-
-                        
+                        _unit.Stop(GetDirection().normalized, false);
 
                         _onDistanceInReadyPattern = true;
                     }
                     else
                     {
-                        Vector3 direction = GetDirection().normalized;
-                        _unit.Run(direction);
+                        _unit.RunAgentToTarget(Player.s_player.transform);
+                        _unit.Rotation(GetDirection().normalized);
                     }
                 }
             }

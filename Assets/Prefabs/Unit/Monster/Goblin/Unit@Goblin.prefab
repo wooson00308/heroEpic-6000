@@ -49,6 +49,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5657119147146706861}
     - target: {fileID: 3134295797565337060, guid: 78fe6ee1226ff1243b4effbb873dc2dd, type: 3}
+      propertyPath: hitBoxCaster
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3134295797565337060, guid: 78fe6ee1226ff1243b4effbb873dc2dd, type: 3}
+      propertyPath: hitBoxReceiver
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3134295797565337060, guid: 78fe6ee1226ff1243b4effbb873dc2dd, type: 3}
       propertyPath: _backMoveDecreasePercent
       value: 0.4
       objectReference: {fileID: 0}
@@ -165,6 +173,22 @@ PrefabInstance:
     - target: {fileID: 1757000886736122850, guid: 0148aa8e5222421469bbf942425a1092, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2274678896519578914, guid: 0148aa8e5222421469bbf942425a1092, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2473692142287741650, guid: 0148aa8e5222421469bbf942425a1092, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2685672741410849987, guid: 0148aa8e5222421469bbf942425a1092, type: 3}
+      propertyPath: ReceiverLayer.m_Bits
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4869293087523298307, guid: 0148aa8e5222421469bbf942425a1092, type: 3}
+      propertyPath: HitableLayer.m_Bits
+      value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 4888964980496305963, guid: 0148aa8e5222421469bbf942425a1092, type: 3}
       propertyPath: m_IsActive

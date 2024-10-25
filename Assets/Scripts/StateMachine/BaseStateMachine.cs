@@ -18,7 +18,7 @@ namespace Scripts.StateMachine
         protected readonly int _hitHash = Animator.StringToHash("Hit");
         protected readonly int _deathHash = Animator.StringToHash("Death");
 
-        private void Awake()
+        protected virtual void Awake()
         {
             _unit = GetComponent<Unit>();
             _animator = GetComponentInChildren<Animator>();
@@ -57,6 +57,7 @@ namespace Scripts.StateMachine
 
         public virtual void OnDeath()
         {
+            _unit.IsDeath = true;
             _fsm.TransitionTo(_deathState);
         }
     }

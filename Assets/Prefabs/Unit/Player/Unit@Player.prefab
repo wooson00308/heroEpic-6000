@@ -113,6 +113,10 @@ PrefabInstance:
     - target: {fileID: 841664237669988914, guid: 1ae70118c5309294ca4990523a72ccb5, type: 3}
       propertyPath: _rigidbodyToIgnore
       value: 
+      objectReference: {fileID: 2969790331877284217}
+    - target: {fileID: 841664237669988914, guid: 1ae70118c5309294ca4990523a72ccb5, type: 3}
+      propertyPath: HitableLayer.m_Bits
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 5227343098478692840, guid: 1ae70118c5309294ca4990523a72ccb5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -157,6 +161,14 @@ PrefabInstance:
     - target: {fileID: 6465214523742606894, guid: 1ae70118c5309294ca4990523a72ccb5, type: 3}
       propertyPath: m_Name
       value: Model@Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667752801783710947, guid: 1ae70118c5309294ca4990523a72ccb5, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7888169407964324594, guid: 1ae70118c5309294ca4990523a72ccb5, type: 3}
+      propertyPath: ReceiverLayer.m_Bits
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4110439893326382843, guid: 1ae70118c5309294ca4990523a72ccb5, type: 3}

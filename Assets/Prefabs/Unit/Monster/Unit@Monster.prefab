@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5382790921983498457}
     m_Modifications:
+    - target: {fileID: 3898076733359537843, guid: 3239bb6058a16b24982bc99fdb2a9609, type: 3}
+      propertyPath: HitableLayer.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 6331961590995681378, guid: 3239bb6058a16b24982bc99fdb2a9609, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7210262256250770095, guid: 3239bb6058a16b24982bc99fdb2a9609, type: 3}
       propertyPath: m_Name
       value: Model@Monster

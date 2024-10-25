@@ -66,7 +66,7 @@ namespace Scripts.StateMachine
             {
                 if(_input != Vector2.zero)
                 {
-                    _unit.Run(_input);
+                    _unit.RunAgent(_input);
                 }
                 else
                 {

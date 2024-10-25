@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.AI;
 
 namespace Scripts.StateMachine
 {
@@ -56,7 +57,6 @@ namespace Scripts.StateMachine
 
         protected PatternCondition _readyPattern = null;
         protected float _readyPatternDistance = 999;
-
 
         protected override void SetState()
         {
@@ -168,8 +168,9 @@ namespace Scripts.StateMachine
             }
             else if (step == FSM.Step.Update)
             {
+
                 Vector3 direction = GetDirection().normalized;
-                _unit.Rotation(direction);
+                _unit.Stop(direction);
 
                 float distance = GetDistance();
 
@@ -220,11 +221,12 @@ namespace Scripts.StateMachine
                 }
                 else if (distance <= minChaseDistance)
                 {
-                    _unit.BackMove(direction);
+                    _unit.BackMoveAgent(direction);
                 }
                 else if (distance > minChaseDistance)
                 {
-                    _unit.Run(direction);
+                    _unit.RunAgentToTarget(Player.s_player.transform);
+                    _unit.Rotation(direction);
                 }
             }
             else

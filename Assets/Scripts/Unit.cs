@@ -1,11 +1,16 @@
 using Scripts.StateMachine;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Scripts
 {
     public class Unit : MonoBehaviour, IStats
     {
+        private NavMeshAgent _agent;
+
         private BaseStateMachine _stateMachine;
+        private bool _isHitable = true;
 
         [Header("Config")]
         public StatsData data;
@@ -17,6 +22,9 @@ namespace Scripts
 
         public int Health { get; set; }
         public float RunSpeed { get; set; }
+        public int Damage { get; set; }
+
+        public bool IsDeath { get; set; }
 
         [Range(0, 1f)]
         public float _backMoveDecreasePercent;
@@ -33,12 +41,28 @@ namespace Scripts
 
         private void OnHitEvent(HitBoxData data)
         {
-            OnHit(null);
+            if (IsDeath) return;
+            if (!_isHitable) return;
+            StartCoroutine(OnHitDelay());
+
+            OnHit(data.HitBoxCaster.GetComponentInParent<Unit>());
+        }
+
+        private IEnumerator OnHitDelay()
+        {
+            if (!_isHitable) yield break;
+            _isHitable = false;
+
+            yield return new WaitForSeconds(0.1f);
+            _isHitable = true;
         }
 
         private void Awake()
         {
             _stateMachine = GetComponent<BaseStateMachine>();
+            _agent = GetComponent<NavMeshAgent>();
+            _agent.updateRotation = false;
+            _agent.updateUpAxis = false;
 
             data.Setup(this);
         }
@@ -48,19 +72,34 @@ namespace Scripts
             _stateMachine.OnUpdate();
         }
 
-        public void Run(Vector3 runDir, bool isRotation = true)
+        public void Stop(Vector3 dir, bool isRotation = true)
         {
-            transform.position += RunSpeed * Time.deltaTime * runDir;
-
-            if (isRotation)
+            _agent.isStopped = true;
+            if(isRotation)
             {
-                Rotation(runDir);
+                Rotation(dir);
             }
         }
 
-        public void BackMove(Vector3 dir)
+        public void RunAgent(Vector3 runDir)
         {
-            transform.position += (RunSpeed - RunSpeed * _backMoveDecreasePercent) * Time.deltaTime * -dir;
+            _agent.isStopped = false;
+            _agent.Move(RunSpeed * Time.deltaTime * runDir);
+            Rotation(runDir);
+        }
+
+        public void RunAgentToTarget(Transform target)
+        {
+            _agent.isStopped = false;
+            _agent.speed = RunSpeed;
+            _agent.SetDestination(target.position);
+        }
+
+        public void BackMoveAgent(Vector3 dir)
+        {
+            _agent.isStopped = false;
+            _agent.speed = RunSpeed - RunSpeed * _backMoveDecreasePercent;
+            _agent.SetDestination(-dir);
             Rotation(dir);
         }
 
@@ -76,10 +115,20 @@ namespace Scripts
         public void OnHit(Unit attacker)
         {
             _stateMachine.OnHit();
+
+            Health -= attacker.Damage;
+
+            if(Health <= 0)
+            {
+                OnDeath(attacker);
+            }
         }
 
         public void OnDeath(Unit attacker)
         {
+            hitBoxCaster.enabled = false;
+            hitBoxReceiver.enabled = false;
+
             _stateMachine.OnDeath();
         }
     }

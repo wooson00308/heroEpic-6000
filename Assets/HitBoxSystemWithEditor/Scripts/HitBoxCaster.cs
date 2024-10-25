@@ -38,7 +38,7 @@ public class HitBoxCaster : MonoBehaviour
                     foreach(Collider2D col in cols)
                     {
                         Rigidbody2D rb = col.attachedRigidbody;
-                        if(rb != null && _castedRigidbodies.Add(rb))
+                        if(rb != null && !_castedRigidbodies.Contains(rb))
                         {
                             OnCasted(hb, col);
                         }
