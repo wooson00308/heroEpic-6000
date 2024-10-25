@@ -58,13 +58,18 @@ namespace Scripts.StateMachine
 
         protected override void RunState(FSM fsm, FSM.Step step, FSM.State state)
         {
-            if(step == FSM.Step.Enter)
+            if (_animator.GetBool("Hit")) return;
+
+            if (step == FSM.Step.Enter)
             {
                 _animator.CrossFade(_runHash, 0f);
             }
             else if (step == FSM.Step.Update)
             {
-                if(_input != Vector2.zero)
+                if (!_animator.GetBool("Run"))
+                    _animator.CrossFade(_runHash, 0f);
+
+                if (_input != Vector2.zero)
                 {
                     _unit.RunAgent(_input);
                 }
@@ -87,6 +92,7 @@ namespace Scripts.StateMachine
             }
             else if (step == FSM.Step.Update)
             {
+                _unit.RunAgent(Vector3.zero);
                 if (_animator.GetBool("Hit")) return;
 
                 if (_input != Vector2.zero)

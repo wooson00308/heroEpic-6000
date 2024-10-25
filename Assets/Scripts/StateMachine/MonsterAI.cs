@@ -240,6 +240,7 @@ namespace Scripts.StateMachine
             if (step == FSM.Step.Enter)
             {
                 _animator.CrossFade(_hitHash, 0f);
+                _unit.Stop(Vector3.zero, false);
             }
             else if (step == FSM.Step.Update)
             {
@@ -258,6 +259,7 @@ namespace Scripts.StateMachine
             if (step == FSM.Step.Enter)
             {
                 _animator.CrossFade(_deathHash, 0f);
+                _unit.Stop(Vector3.zero, false);
             }
             else if (step == FSM.Step.Update)
             {

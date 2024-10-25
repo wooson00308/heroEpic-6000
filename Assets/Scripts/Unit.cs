@@ -7,6 +7,7 @@ namespace Scripts
 {
     public class Unit : MonoBehaviour, IStats
     {
+        private SpriteRenderer _modelRenderer;
         private NavMeshAgent _agent;
 
         private BaseStateMachine _stateMachine;
@@ -64,18 +65,29 @@ namespace Scripts
             _agent.updateRotation = false;
             _agent.updateUpAxis = false;
 
+            _modelRenderer = model.GetComponent<SpriteRenderer>();
+
             data.Setup(this);
         }
 
         private void Update()
         {
             _stateMachine.OnUpdate();
+            UpdateSortingOrder();
+        }
+
+        private void UpdateSortingOrder()
+        {
+            if (_modelRenderer != null)
+            {
+                _modelRenderer.sortingOrder = Mathf.RoundToInt(-model.position.y * 100);
+            }
         }
 
         public void Stop(Vector3 dir, bool isRotation = true)
         {
             _agent.isStopped = true;
-            if(isRotation)
+            if (isRotation)
             {
                 Rotation(dir);
             }
@@ -118,7 +130,7 @@ namespace Scripts
 
             Health -= attacker.Damage;
 
-            if(Health <= 0)
+            if (Health <= 0)
             {
                 OnDeath(attacker);
             }
