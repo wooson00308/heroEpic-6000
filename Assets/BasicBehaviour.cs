@@ -6,6 +6,7 @@ public enum PlayerStateType
     Run,
     Hit,
     Death,
+    Attack,
 }
 
 public class BasicBehaviour : StateMachineBehaviour
@@ -28,6 +29,9 @@ public class BasicBehaviour : StateMachineBehaviour
                 break;
             case PlayerStateType.Death:
                 animator.SetBool("Death", true);
+                break;
+            case PlayerStateType.Attack:
+                animator.SetBool("Attack", true);
                 break;
         }
     }
@@ -54,6 +58,9 @@ public class BasicBehaviour : StateMachineBehaviour
                 break;
             case PlayerStateType.Death:
                 animator.SetBool("Death", false);
+                break;
+            case PlayerStateType.Attack:
+                animator.SetBool("Attack", false);
                 break;
         }
     }

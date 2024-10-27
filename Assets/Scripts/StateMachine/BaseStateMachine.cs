@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Scripts.StateMachine
@@ -18,6 +20,8 @@ namespace Scripts.StateMachine
         protected readonly int _hitHash = Animator.StringToHash("Hit");
         protected readonly int _deathHash = Animator.StringToHash("Death");
 
+        public Unit Unit => _unit;
+        public Animator Animator => _animator;
         protected virtual void Awake()
         {
             _unit = GetComponent<Unit>();
@@ -48,6 +52,21 @@ namespace Scripts.StateMachine
         protected abstract void IdleState(FSM fsm, FSM.Step step, FSM.State state);
         protected abstract void RunState(FSM fsm, FSM.Step step, FSM.State state);
         protected abstract void HitState(FSM fsm, FSM.Step step, FSM.State state);
+
+        protected virtual IEnumerator DelayFrameHit()
+        {
+            yield return new WaitForEndOfFrame();
+
+            if (_animator.GetBool("Hit")) yield break;
+
+            Hit();
+        }
+
+        protected virtual void Hit()
+        {
+
+        }
+
         protected abstract void DeathState(FSM fsm, FSM.Step step, FSM.State state);
 
         public virtual void OnHit()
@@ -59,6 +78,11 @@ namespace Scripts.StateMachine
         {
             _unit.IsDeath = true;
             _fsm.TransitionTo(_deathState);
+        }
+
+        protected virtual void TryTransitionTo(FSM.State state)
+        {
+            _fsm.TransitionTo(state);
         }
     }
 }

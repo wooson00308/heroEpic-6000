@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.AI;
+using System.Collections;
 
 namespace Scripts.StateMachine
 {
@@ -125,19 +126,19 @@ namespace Scripts.StateMachine
 
                     if (stateHash == _pattern1Hash)
                     {
-                        _fsm.TransitionTo(Pattern1State);
+                        TryTransitionTo(Pattern1State);
                     }
                     else if (stateHash == _pattern2Hash)
                     {
-                        _fsm.TransitionTo(Pattern2State);
+                        TryTransitionTo(Pattern2State);
                     }
                     else if (stateHash == _pattern3Hash)
                     {
-                        _fsm.TransitionTo(Pattern3State);
+                        TryTransitionTo(Pattern3State);
                     }
                     else if (stateHash == _pattern4Hash)
                     {
-                        _fsm.TransitionTo(Pattern4State);
+                        TryTransitionTo(Pattern4State);
                     }
 
                     return true;
@@ -152,11 +153,11 @@ namespace Scripts.StateMachine
             float distance = GetDistance();
             if (distance > chaseDistance && distance > minChaseDistance)
             {
-                _fsm.TransitionTo(IdleState);
+                TryTransitionTo(IdleState);
             }
             else
             {
-                _fsm.TransitionTo(RunState);
+                TryTransitionTo(RunState);
             }
         }
 
@@ -168,7 +169,6 @@ namespace Scripts.StateMachine
             }
             else if (step == FSM.Step.Update)
             {
-
                 Vector3 direction = GetDirection().normalized;
                 _unit.Stop(direction);
 
@@ -185,7 +185,7 @@ namespace Scripts.StateMachine
 
                 if (distance < chaseDistance && distance > minChaseDistance)
                 {
-                    _fsm.TransitionTo(RunState);
+                    TryTransitionTo(RunState);
                 }
             }
             else
@@ -211,13 +211,13 @@ namespace Scripts.StateMachine
                 if (distance <= minChaseDistance + chaseBufferRange && 
                     distance >= minChaseDistance - chaseBufferRange)
                 {
-                    _fsm.TransitionTo(IdleState);
+                    TryTransitionTo(IdleState);
                     return;
                 }
                 
                 if (distance >= chaseDistance)
                 {
-                    _fsm.TransitionTo(IdleState);
+                    TryTransitionTo(IdleState);
                 }
                 else if (distance <= minChaseDistance)
                 {
@@ -244,14 +244,17 @@ namespace Scripts.StateMachine
             }
             else if (step == FSM.Step.Update)
             {
-                if (_animator.GetBool("Hit")) return;
-
-                TransitionToRunOrIdle();
+                StartCoroutine(DelayFrameHit());
             }
             else
             {
 
             }
+        }
+
+        protected override void Hit()
+        {
+            TransitionToRunOrIdle();
         }
 
         protected override void DeathState(FSM fsm, FSM.Step step, FSM.State state)
@@ -269,6 +272,11 @@ namespace Scripts.StateMachine
             {
 
             }
+        }
+
+        protected override void TryTransitionTo(FSM.State state)
+        {
+            base.TryTransitionTo(state);
         }
     }
 }
