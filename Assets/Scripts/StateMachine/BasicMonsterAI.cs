@@ -30,6 +30,13 @@ namespace Scripts.StateMachine
                 if (!_onDistanceInReadyPattern)
                 {
                     float distance = GetDistance();
+                    if (distance >= chaseDistance)
+                    {
+                        TryTransitionTo(IdleState);
+                        _onDistanceInReadyPattern = true;
+                        return;
+                    }
+
                     if (distance <= _readyPattern.distance)
                     {
                         _animator.CrossFade(animHash, 0f);

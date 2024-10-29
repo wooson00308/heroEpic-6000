@@ -20,6 +20,10 @@ namespace Scripts.StateMachine
         protected readonly int _hitHash = Animator.StringToHash("Hit");
         protected readonly int _deathHash = Animator.StringToHash("Death");
 
+        protected float _currentDeathTime;
+
+        public float deathDurationTime;
+
         public Unit Unit => _unit;
         public Animator Animator => _animator;
         protected virtual void Awake()

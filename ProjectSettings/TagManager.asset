@@ -48,5 +48,11 @@ TagManager:
   - name: Alert
     uniqueID: 4189860189
     locked: 0
+  - name: Other
+    uniqueID: 3419463949
+    locked: 0
+  - name: Other 2
+    uniqueID: 2901660413
+    locked: 0
   m_RenderingLayers:
   - Default

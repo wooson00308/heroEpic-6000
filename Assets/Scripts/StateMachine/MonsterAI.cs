@@ -1,9 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
-using UnityEngine.AI;
-using System.Collections;
 
 namespace Scripts.StateMachine
 {
@@ -58,7 +55,6 @@ namespace Scripts.StateMachine
 
         protected PatternCondition _readyPattern = null;
         protected float _readyPatternDistance = 999;
-
         protected override void SetState()
         {
             base.SetState();
@@ -87,20 +83,12 @@ namespace Scripts.StateMachine
         protected virtual void Pattern3State(FSM fsm, FSM.Step step, FSM.State state) { }
         protected virtual void Pattern4State(FSM fsm, FSM.Step step, FSM.State state) { }
 
-        /// <summary>
-        /// 플레이어와의 거리 float 제공
-        /// </summary>
-        /// <returns></returns>
         protected float GetDistance()
         {
             if (Player.s_player == null) return 999;
             return Vector2.Distance(Player.s_player.transform.position, _unit.transform.position);
         }
 
-        /// <summary>
-        /// 유닛이 플레이어 방향으로 가기위한 각도를 제공
-        /// </summary>
-        /// <returns></returns>
         protected Vector3 GetDirection()
         {
             if (Player.s_player == null) return Vector3.zero;
@@ -110,7 +98,7 @@ namespace Scripts.StateMachine
         protected bool TryTransitionToPattern()
         {
             _readyPattern = null;
-            
+
             foreach (var condition in patternConditions)
             {
                 if (condition.IsDelaying) continue;
@@ -174,23 +162,20 @@ namespace Scripts.StateMachine
 
                 float distance = GetDistance();
 
+                if (distance >= chaseDistance) return;
+
                 if (TryTransitionToPattern()) return;
 
-                // 마진 범위 안에 있을 경우 Idle 상태 유지
-                if (distance <= minChaseDistance + chaseBufferRange && 
+                if (distance <= minChaseDistance + chaseBufferRange &&
                     distance >= minChaseDistance - chaseBufferRange)
                 {
-                    return; 
+                    return;
                 }
 
-                if (distance < chaseDistance && distance > minChaseDistance)
+                if (distance > minChaseDistance)
                 {
                     TryTransitionTo(RunState);
                 }
-            }
-            else
-            {
-                // 기타 처리
             }
         }
 
@@ -207,14 +192,19 @@ namespace Scripts.StateMachine
                 Vector3 direction = GetDirection().normalized;
                 float distance = GetDistance();
 
-                // 마진 범위 안에 있을 경우 Idle 상태로 전환
-                if (distance <= minChaseDistance + chaseBufferRange && 
+                if (distance >= chaseDistance)
+                {
+                    TryTransitionTo(IdleState);
+                    return;
+                }
+
+                if (distance <= minChaseDistance + chaseBufferRange &&
                     distance >= minChaseDistance - chaseBufferRange)
                 {
                     TryTransitionTo(IdleState);
                     return;
                 }
-                
+
                 if (distance >= chaseDistance)
                 {
                     TryTransitionTo(IdleState);
@@ -229,10 +219,6 @@ namespace Scripts.StateMachine
                     _unit.Rotation(direction);
                 }
             }
-            else
-            {
-                // 기타 처리
-            }
         }
 
         protected override void HitState(FSM fsm, FSM.Step step, FSM.State state)
@@ -245,10 +231,6 @@ namespace Scripts.StateMachine
             else if (step == FSM.Step.Update)
             {
                 StartCoroutine(DelayFrameHit());
-            }
-            else
-            {
-
             }
         }
 
@@ -263,20 +245,48 @@ namespace Scripts.StateMachine
             {
                 _animator.CrossFade(_deathHash, 0f);
                 _unit.Stop(Vector3.zero, false);
+                _currentDeathTime = deathDurationTime;
             }
             else if (step == FSM.Step.Update)
             {
+                _currentDeathTime -= Time.deltaTime;
 
-            }
-            else
-            {
-
+                if (_currentDeathTime <= 0)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
 
         protected override void TryTransitionTo(FSM.State state)
         {
             base.TryTransitionTo(state);
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, chaseDistance);
+
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(transform.position, minChaseDistance);
+
+            Gizmos.color = Color.magenta;
+            foreach (var patternCondition in patternConditions)
+            {
+                Gizmos.DrawWireSphere(transform.position, patternCondition.distance);
+            }
+
+            // 추가된 효과: 특정 범위 내에 있을 때 기즈모 색상 변경
+            if (Player.s_player != null)
+            {
+                float distanceToPlayer = Vector2.Distance(Player.s_player.transform.position, transform.position);
+                if (distanceToPlayer <= chaseDistance)
+                {
+                    Gizmos.color = Color.red;
+                    Gizmos.DrawWireSphere(transform.position, chaseDistance);
+                }
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Scripts.StateMachine
 {
@@ -175,17 +176,23 @@ namespace Scripts.StateMachine
             {
                 _fsm.TransitionTo(IdleState);
             }
-        } 
+        }
 
         protected override void DeathState(FSM fsm, FSM.Step step, FSM.State state)
         {
             if (step == FSM.Step.Enter)
             {
                 _animator.CrossFade(_deathHash, 0f);
+                _currentDeathTime = deathDurationTime;
             }
             else if (step == FSM.Step.Update)
             {
+                _currentDeathTime -= Time.deltaTime;
 
+                if (_currentDeathTime <= 0)
+                {
+                    SceneManager.LoadScene(0);
+                }
             }
             else
             {

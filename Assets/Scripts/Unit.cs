@@ -110,7 +110,8 @@ namespace Scripts
         public void BackMoveAgent(Vector3 dir)
         {
             _agent.isStopped = false;
-            _agent.speed = RunSpeed - RunSpeed * _backMoveDecreasePercent;
+            _agent.speed = RunSpeed/* - RunSpeed * _backMoveDecreasePercent*/;
+
             _agent.SetDestination(-dir);
             Rotation(dir);
         }

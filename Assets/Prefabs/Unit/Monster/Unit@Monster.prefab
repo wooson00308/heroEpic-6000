@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CanBeTriggered: 0
   CustomValue: 0
-  Size: {x: 1, y: 1}
+  Size: {x: 2, y: 2}
 --- !u!1001 &5593224831876119199
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -96,6 +96,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1314239898622653159, guid: 34950459f5c759640889bb1e3afda15a, type: 3}
+      propertyPath: Size.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1314239898622653159, guid: 34950459f5c759640889bb1e3afda15a, type: 3}
+      propertyPath: Size.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1314239898622653159, guid: 34950459f5c759640889bb1e3afda15a, type: 3}
       propertyPath: CanBeTriggered
       value: 0
       objectReference: {fileID: 0}
@@ -106,6 +114,18 @@ PrefabInstance:
     - target: {fileID: 3710001226819503376, guid: 34950459f5c759640889bb1e3afda15a, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004252705151891601, guid: 34950459f5c759640889bb1e3afda15a, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004252705151891601, guid: 34950459f5c759640889bb1e3afda15a, type: 3}
+      propertyPath: m_Size.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004252705151891601, guid: 34950459f5c759640889bb1e3afda15a, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.16
       objectReference: {fileID: 0}
     - target: {fileID: 5303726905598790813, guid: 34950459f5c759640889bb1e3afda15a, type: 3}
       propertyPath: ReceiverLayer.m_Bits
@@ -227,7 +247,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 975fe11b66b20b8488955b2158c8642b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseDistance: 999
+  deathDurationTime: 2
+  chaseDistance: 10
   minChaseDistance: 2
   chaseBufferRange: 0.1
   patternConditions:
