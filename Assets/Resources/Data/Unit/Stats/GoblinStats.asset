@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a5f657651c91554194c07c533322917, type: 3}
   m_Name: GoblinStats
   m_EditorClassIdentifier: 
+  displayName: "\uACE0\uBE14\uB9B0"
   health: 20
   damage: 5
   runSpeed: 5

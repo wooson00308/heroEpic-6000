@@ -14,7 +14,9 @@ namespace Scripts
         /// <param name="e"></param>
         public void OnAttackEvent(AnimationEvent e)
         {
-            attackColliders[e.intParameter].SetActive(bool.Parse(e.stringParameter));
+            var collider = attackColliders[e.intParameter];
+            collider.transform.parent.rotation = transform.rotation;
+            collider.SetActive(bool.Parse(e.stringParameter));
         }
 
         public void OnPlaySFX(AnimationEvent e)

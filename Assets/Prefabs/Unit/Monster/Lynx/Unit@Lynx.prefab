@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1384944483792593340, guid: 78fe6ee1226ff1243b4effbb873dc2dd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.61
+      objectReference: {fileID: 0}
     - target: {fileID: 1438866782732210646, guid: 78fe6ee1226ff1243b4effbb873dc2dd, type: 3}
       propertyPath: chaseDistance
       value: 5
@@ -51,6 +55,10 @@ PrefabInstance:
     - target: {fileID: 1438866782732210646, guid: 78fe6ee1226ff1243b4effbb873dc2dd, type: 3}
       propertyPath: patternConditions.Array.data[1].partternNumber
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2855421761846824136, guid: 78fe6ee1226ff1243b4effbb873dc2dd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3134295797565337060, guid: 78fe6ee1226ff1243b4effbb873dc2dd, type: 3}
       propertyPath: data
@@ -127,6 +135,10 @@ PrefabInstance:
     - target: {fileID: 7410448072933426601, guid: 78fe6ee1226ff1243b4effbb873dc2dd, type: 3}
       propertyPath: m_Height
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8706703522356877411, guid: 78fe6ee1226ff1243b4effbb873dc2dd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 9143347571279380367, guid: 78fe6ee1226ff1243b4effbb873dc2dd, type: 3}
       propertyPath: m_Name

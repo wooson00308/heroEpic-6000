@@ -1,10 +1,17 @@
 using Scripts.StateMachine;
+using Scripts.UI;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace Scripts
 {
+    public enum Team
+    {
+        Player, 
+        Monster
+    }
+
     public class Unit : MonoBehaviour, IStats
     {
         private SpriteRenderer _modelRenderer;
@@ -16,11 +23,13 @@ namespace Scripts
         [Header("Config")]
         public StatsData data;
         public Transform model;
+        public Team team;
 
         [Header("HitBox")]
         public HitBoxCaster hitBoxCaster;
         public HitBoxReceiver hitBoxReceiver;
 
+        public string DisplayName { get; set; }
         public int Health { get; set; }
         public float RunSpeed { get; set; }
         public int Damage { get; set; }
@@ -109,10 +118,10 @@ namespace Scripts
 
         public void BackMoveAgent(Vector3 dir)
         {
-            _agent.isStopped = false;
-            _agent.speed = RunSpeed/* - RunSpeed * _backMoveDecreasePercent*/;
+            _agent.isStopped = true;
+            var runSpeed = RunSpeed - RunSpeed * _backMoveDecreasePercent;
 
-            _agent.SetDestination(-dir);
+            _agent.Move(runSpeed * Time.deltaTime * -dir);
             Rotation(dir);
         }
 
@@ -130,6 +139,8 @@ namespace Scripts
             _stateMachine.OnHit();
 
             Health -= attacker.Damage;
+
+            HealthBarPresenter.Update?.Invoke(this);
 
             if (Health <= 0)
             {
