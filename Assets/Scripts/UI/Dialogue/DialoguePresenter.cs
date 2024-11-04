@@ -1,9 +1,22 @@
+using System;
 using UnityEngine;
 
 namespace Scripts.UI
 {
     public class DialoguePresenter : BasePresenter<DialogueView, DialogueModel>
     {
+        public static Action<DialogueTreeData> Start;
+
+        private void OnEnable()
+        {
+            Start += InitializeDialogue;
+        }
+
+        private void OnDisable()
+        {
+            Start -= InitializeDialogue;
+        }
+
         // 다이얼로그 트리를 초기화하고 UI 업데이트
         public void InitializeDialogue(DialogueTreeData dialogueTreeData)
         {

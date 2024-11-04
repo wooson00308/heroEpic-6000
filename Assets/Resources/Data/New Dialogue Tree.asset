@@ -12,4 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2873034e2895e034c975f3e225fbe00e, type: 3}
   m_Name: New Dialogue Tree
   m_EditorClassIdentifier: 
-  nodes: []
+  nodes:
+  - nodeId: Node_1
+    leftDisplayName: "\uC8FC\uC778\uACF5"
+    leftIllustration: {fileID: 4723107735738678597, guid: 0bd97e23f8b532a4f8969605a3b00a4e, type: 3}
+    rightDisplayName: "\uBCF4\uC2A4"
+    rightIllustration: {fileID: 4723107735738678597, guid: ec706eb69e35db04c8894de51d6e8ed5, type: 3}
+    isLeftSpeaker: 1
+    dialogueText: "\uC548\uB155 \uBA38\uC800\uB9AC"
+    childNodes:
+    - id: Node_2
+      optionText: Option Text
+  - nodeId: Node_2
+    leftDisplayName: Left Speaker
+    leftIllustration: {fileID: 4723107735738678597, guid: 0bd97e23f8b532a4f8969605a3b00a4e, type: 3}
+    rightDisplayName: Right Speaker
+    rightIllustration: {fileID: 4723107735738678597, guid: ec706eb69e35db04c8894de51d6e8ed5, type: 3}
+    isLeftSpeaker: 0
+    dialogueText: "\uD0A4\u3163\uC774\u3163\u3163\u3163\uC57C\uC544\uC544\uC544\uC544\uC544\u314F\u314F\u314F\u314F\uC544\u314F\u314F\uC545!!!!!"
+    childNodes: []
