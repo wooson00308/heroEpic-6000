@@ -5,14 +5,29 @@ public class DialogueDemo : MonoBehaviour
 {
     public DialogueTreeData data;
 
-    private bool _isStartDialogue;
+    private bool _isRunningDialogue;
+
+    private void OnEnable()
+    {
+        DialoguePresenter.End += DialogueEndEvent;
+    }
+
+    private void OnDisable()
+    {
+        DialoguePresenter.End -= DialogueEndEvent;
+    }
+
+    private void DialogueEndEvent()
+    {
+        _isRunningDialogue = false;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (!_isStartDialogue && Input.GetKeyDown(KeyCode.KeypadEnter))
+        if (!_isRunningDialogue && Input.GetKeyDown(KeyCode.KeypadPlus))
         {
-            _isStartDialogue = true;
+            _isRunningDialogue = true;
             DialoguePresenter.Start?.Invoke(data);
         }
     }

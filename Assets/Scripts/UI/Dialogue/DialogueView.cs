@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using TMPro;
 using UnityEngine;
@@ -9,6 +10,9 @@ namespace Scripts.UI
     {
         public event Action OnNextDialogueRequest; // 다음 대화 요청 이벤트
 
+        public float _maxDisplayDuration = 5f;
+        private bool _isUpdatingView;
+
         private void OnEnable()
         {
             BindUI();
@@ -17,8 +21,9 @@ namespace Scripts.UI
 
         private void Update()
         {
+            if (!Get<GameObject>((int)GameObjects.View).activeSelf) return;
             // 선택지가 2개 미만일 때, 마우스 클릭이나 엔터키로 다음 대화 요청
-            if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Return))
+            if (!_isUpdatingView && Input.GetKeyDown(KeyCode.KeypadEnter))
             {
                 OnNextDialogueRequest?.Invoke();
             }
@@ -26,7 +31,9 @@ namespace Scripts.UI
 
         public enum GameObjects
         {
+            Left_Illustration_Parent,
             Left_DisplayName_Parent,
+            Right_Illustration_Parent,
             Right_DisplayName_Parent,
             View
         }
@@ -34,6 +41,7 @@ namespace Scripts.UI
         public enum Texts
         {
             Dialogue_Text,
+            Dialogue_Text_Shadow,
             Left_DisplayName_Text,
             Right_DisplayName_Text
         }
@@ -68,30 +76,38 @@ namespace Scripts.UI
         // Model을 참조하여 UI 업데이트
         public void UpdateUI(DialogueModel model)
         {
+            _isUpdatingView = true;
+
             if (model.ChildNodes.Count >= 2)
             {
                 HideGameObject(GameObjects.Left_DisplayName_Parent);
                 HideGameObject(GameObjects.Right_DisplayName_Parent);
                 SetText(Texts.Dialogue_Text, string.Empty);
+                SetText(Texts.Dialogue_Text_Shadow, string.Empty);
                 ShowOptionsButtons(model);
             }
             else
             {
-                SetText(Texts.Dialogue_Text, model.DialogueText);
+                SetText(Texts.Dialogue_Text_Shadow, model.DialogueText);
+                SetDialogueText(Texts.Dialogue_Text, model.DialogueText, true);
 
                 if (model.IsLeftSpeaker)
                 {
                     SetText(Texts.Left_DisplayName_Text, model.LeftDisplayName);
                     SetImage(Images.Left_Illustration_Image, model.LeftIllustration);
                     ShowGameObject(GameObjects.Left_DisplayName_Parent);
+                    ShowGameObject(GameObjects.Left_Illustration_Parent);
                     HideGameObject(GameObjects.Right_DisplayName_Parent);
+                    HideGameObject(GameObjects.Right_Illustration_Parent);
                 }
                 else
                 {
                     SetText(Texts.Right_DisplayName_Text, model.RightDisplayName);
                     SetImage(Images.Right_Illustration_Image, model.RightIllustration);
                     ShowGameObject(GameObjects.Right_DisplayName_Parent);
+                    ShowGameObject(GameObjects.Right_Illustration_Parent);
                     HideGameObject(GameObjects.Left_DisplayName_Parent);
+                    HideGameObject(GameObjects.Left_Illustration_Parent);
                 }
 
                 HideAllOptionButtons();
@@ -106,10 +122,12 @@ namespace Scripts.UI
                 var button = Get<Button>((int)Buttons.Select_Option_Button_1 + i);
                 button.gameObject.SetActive(true);
 
+                string text = model.ChildNodes[i].optionText;
+
                 var buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
                 if (buttonText != null)
                 {
-                    buttonText.text = model.ChildNodes[i].optionText;
+                    buttonText.text = text;
                 }
             }
         }
@@ -131,9 +149,36 @@ namespace Scripts.UI
             var text = Get<TextMeshProUGUI>((int)textElement);
             if (text != null)
             {
-                text.text = content;
+                text.SetText(content);
             }
         }
+
+        private void SetDialogueText(Texts textElement, string content, bool isDOText = false)
+        {
+            var text = Get<TextMeshProUGUI>((int)textElement);
+            if (text != null)
+            {
+                if (isDOText)
+                {
+                    int contentSize = content.Length;
+                    float displayDuration = Mathf.Min(_maxDisplayDuration, contentSize * 0.1f); // 글자 길이에 따라 최대 5초 내에서 조절
+
+                    text.text = string.Empty;
+                    text.DOText(content, displayDuration, true, ScrambleMode.None)
+                        .OnComplete(() =>
+                        {
+                            _isUpdatingView = false;
+                        });
+                }
+                else
+                {
+                    text.SetText(content);
+
+                    _isUpdatingView = false;
+                }
+            }
+        }
+
 
         private void SetImage(Images imageElement, Sprite sprite)
         {

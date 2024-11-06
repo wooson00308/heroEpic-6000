@@ -13,21 +13,73 @@ MonoBehaviour:
   m_Name: New Dialogue Tree
   m_EditorClassIdentifier: 
   nodes:
-  - nodeId: Node_1
+  - nodeId: 1
+    leftDisplayName: "\uC8FC\uC778\uACF5"
+    leftIllustration: {fileID: -5639509438907974925, guid: c50b517797d93614aac4ca58aaf97355, type: 3}
+    leftIllustrationPos: {x: 0, y: 0, z: 0}
+    leftIllustrationScale: {x: 0, y: 0, z: 0}
+    rightDisplayName: Right Speaker
+    rightIllustration: {fileID: 0}
+    rightIllustrationPos: {x: 0, y: 0, z: 0}
+    rightIllustrationScale: {x: 0, y: 0, z: 0}
+    isLeftSpeaker: 1
+    dialogueText: "(\uCD24-\uC545!!)"
+    childNodes:
+    - id: 2
+      optionText: Option Text
+  - nodeId: 2
     leftDisplayName: "\uC8FC\uC778\uACF5"
     leftIllustration: {fileID: 4723107735738678597, guid: 0bd97e23f8b532a4f8969605a3b00a4e, type: 3}
-    rightDisplayName: "\uBCF4\uC2A4"
-    rightIllustration: {fileID: 4723107735738678597, guid: ec706eb69e35db04c8894de51d6e8ed5, type: 3}
-    isLeftSpeaker: 1
-    dialogueText: "\uC548\uB155 \uBA38\uC800\uB9AC"
-    childNodes:
-    - id: Node_2
-      optionText: Option Text
-  - nodeId: Node_2
-    leftDisplayName: Left Speaker
-    leftIllustration: {fileID: 4723107735738678597, guid: 0bd97e23f8b532a4f8969605a3b00a4e, type: 3}
-    rightDisplayName: Right Speaker
-    rightIllustration: {fileID: 4723107735738678597, guid: ec706eb69e35db04c8894de51d6e8ed5, type: 3}
+    leftIllustrationPos: {x: 0, y: 0, z: 0}
+    leftIllustrationScale: {x: 0, y: 0, z: 1}
+    rightDisplayName: "<color=#FF0000>\uBD89\uC740\uC218\uC5FC \uD30C\uC0AC\uD06C</color>"
+    rightIllustration: {fileID: 5755147017564654305, guid: 9bf681170c1fd03448ba87986e8f6701, type: 3}
+    rightIllustrationPos: {x: 0, y: 0, z: 0}
+    rightIllustrationScale: {x: 0, y: 0, z: 1}
     isLeftSpeaker: 0
-    dialogueText: "\uD0A4\u3163\uC774\u3163\u3163\u3163\uC57C\uC544\uC544\uC544\uC544\uC544\u314F\u314F\u314F\u314F\uC544\u314F\u314F\uC545!!!!!"
+    dialogueText: "<color=#FF0000>\uC81C\uD558\u314F\u314E\uD558\u314F\uD558\uD558\uD558\u314F\uD558\uD558\uD558\uD558\u314F\u314F!!!!
+      \uC820\uC7A5 \uC774 \uACF5\uACA9\uC740 \uB300\uCCB4 \uBB50\uB0D0!!</color>"
+    childNodes:
+    - id: 3
+      optionText: Option Text
+  - nodeId: 3
+    leftDisplayName: "\uD50C\uB808\uC774\uC5B4"
+    leftIllustration: {fileID: 4723107735738678597, guid: 0bd97e23f8b532a4f8969605a3b00a4e, type: 3}
+    leftIllustrationPos: {x: 0, y: 0, z: 0}
+    leftIllustrationScale: {x: 0, y: 0, z: 0}
+    rightDisplayName: "<color=#FF0000>\uBD89\uC740\uC218\uC5FC \uD30C\uC0AC\uD06C</color>"
+    rightIllustration: {fileID: 5755147017564654305, guid: 9bf681170c1fd03448ba87986e8f6701, type: 3}
+    rightIllustrationPos: {x: 0, y: 0, z: 0}
+    rightIllustrationScale: {x: 0, y: 0, z: 0}
+    isLeftSpeaker: 0
+    dialogueText: "<color=#FF0000>\uC820\uC7A5! \uC8FC\uC778\uACF5!! \uB09C \uB124\uAC00
+      \uC88B\uB2E4!!!</color>"
+    childNodes:
+    - id: 4
+      optionText: Option Text
+  - nodeId: 4
+    leftDisplayName: Left Speaker
+    leftIllustration: {fileID: 0}
+    leftIllustrationPos: {x: 0, y: 0, z: 0}
+    leftIllustrationScale: {x: 0, y: 0, z: 0}
+    rightDisplayName: "<color=#FF0000>\uBD89\uC740\uC218\uC5FC \uD30C\uC0AC\uD06C</color>"
+    rightIllustration: {fileID: 5755147017564654305, guid: 9bf681170c1fd03448ba87986e8f6701, type: 3}
+    rightIllustrationPos: {x: 0, y: 0, z: 0}
+    rightIllustrationScale: {x: 0, y: 0, z: 0}
+    isLeftSpeaker: 0
+    dialogueText: "<color=#FF0000>\uC81C\uD558\u314F\u314E\uD558\u314F\uD558\uD558\uD558\u314F\uD558\uD558\uD558\uD558\u314F\u314F!!!!</color>"
+    childNodes:
+    - id: 5
+      optionText: Option Text
+  - nodeId: 5
+    leftDisplayName: "\uC8FC\uC778\uACF5"
+    leftIllustration: {fileID: 4723107735738678597, guid: 0bd97e23f8b532a4f8969605a3b00a4e, type: 3}
+    leftIllustrationPos: {x: 0, y: 0, z: 0}
+    leftIllustrationScale: {x: 0, y: 0, z: 0}
+    rightDisplayName: Right Speaker
+    rightIllustration: {fileID: 0}
+    rightIllustrationPos: {x: 0, y: 0, z: 0}
+    rightIllustrationScale: {x: 0, y: 0, z: 0}
+    isLeftSpeaker: 1
+    dialogueText: "(\uBB50\uC9C0... \uC800 \uBBF8\uCE5C\uB188\uC740..?)"
     childNodes: []

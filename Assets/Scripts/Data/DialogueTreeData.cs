@@ -13,8 +13,12 @@ public class DialogueNodeData
     public string nodeId;
     public string leftDisplayName;
     public Sprite leftIllustration;
+    public Vector3 leftIllustrationPos;
+    public Vector3 leftIllustrationScale;
     public string rightDisplayName;
     public Sprite rightIllustration;
+    public Vector3 rightIllustrationPos;
+    public Vector3 rightIllustrationScale;
     public bool isLeftSpeaker;
     public string dialogueText;
     public List<DialogueOptionData> childNodes;

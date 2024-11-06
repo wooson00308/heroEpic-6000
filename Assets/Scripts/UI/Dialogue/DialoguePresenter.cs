@@ -6,6 +6,7 @@ namespace Scripts.UI
     public class DialoguePresenter : BasePresenter<DialogueView, DialogueModel>
     {
         public static Action<DialogueTreeData> Start;
+        public static Action End;
 
         private void OnEnable()
         {
@@ -50,6 +51,8 @@ namespace Scripts.UI
             // 추가 종료 로직 (예: UI 숨기기)도 여기서 수행할 수 있습니다.
 
             View.SetActive(false);
+
+            End?.Invoke();
         }
 
         private void HandleNextDialogueRequest()

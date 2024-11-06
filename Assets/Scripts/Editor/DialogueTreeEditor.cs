@@ -47,7 +47,7 @@ public class DialogueTreeEditor : Editor
 
         for (int i = 0; i < dialogueTreeData.nodes.Count; i++)
         {
-            DrawNode(dialogueTreeData.nodes[i]);
+            DrawNode(dialogueTreeData.nodes[i], i);
         }
 
         if (GUI.changed)
@@ -56,7 +56,7 @@ public class DialogueTreeEditor : Editor
         }
     }
 
-    private void DrawNode(DialogueNodeData node)
+    private void DrawNode(DialogueNodeData node, int index)
     {
         // Ensure foldout state exists for this node
         if (!nodeFoldoutStates.ContainsKey(node.nodeId))
@@ -64,10 +64,31 @@ public class DialogueTreeEditor : Editor
             nodeFoldoutStates[node.nodeId] = true; // Default to expanded
         }
 
-        // Toggle for node foldout
+        EditorGUILayout.BeginHorizontal(); // Start horizontal layout
+
+        // Toggle for node foldout with node title
         nodeFoldoutStates[node.nodeId] = EditorGUILayout.Foldout(nodeFoldoutStates[node.nodeId], $"Dialogue Node - {node.nodeId}", true, EditorStyles.foldoutHeader);
 
-        if (nodeFoldoutStates[node.nodeId]) // If the node is expanded
+        // Move Up/Down Buttons
+        GUIContent upIcon = EditorGUIUtility.IconContent("arrow up");
+        GUIContent downIcon = EditorGUIUtility.IconContent("arrow down");
+
+        // Display the up button
+        if (GUILayout.Button(upIcon, GUILayout.Width(25), GUILayout.Height(18)) && index > 0)
+        {
+            SwapNodes(index, index - 1);
+        }
+
+        // Display the down button
+        if (GUILayout.Button(downIcon, GUILayout.Width(25), GUILayout.Height(18)) && index < dialogueTreeData.nodes.Count - 1)
+        {
+            SwapNodes(index, index + 1);
+        }
+
+        EditorGUILayout.EndHorizontal(); // End horizontal layout
+
+        // If the node is expanded
+        if (nodeFoldoutStates[node.nodeId])
         {
             EditorGUILayout.BeginVertical("box");
 
@@ -86,6 +107,8 @@ public class DialogueTreeEditor : Editor
                 EditorGUILayout.BeginVertical("box");
                 node.leftDisplayName = EditorGUILayout.TextField("Left Display Name", node.leftDisplayName);
                 node.leftIllustration = (Sprite)EditorGUILayout.ObjectField("Left Illustration", node.leftIllustration, typeof(Sprite), allowSceneObjects: false);
+                node.leftIllustrationPos = EditorGUILayout.Vector3Field("Left Illustration Pos", node.leftIllustrationPos);
+                node.leftIllustrationScale = EditorGUILayout.Vector3Field("Left Illustration Scale", node.leftIllustrationScale);
                 EditorGUILayout.EndVertical();
             }
 
@@ -97,6 +120,8 @@ public class DialogueTreeEditor : Editor
                 EditorGUILayout.BeginVertical("box");
                 node.rightDisplayName = EditorGUILayout.TextField("Right Display Name", node.rightDisplayName);
                 node.rightIllustration = (Sprite)EditorGUILayout.ObjectField("Right Illustration", node.rightIllustration, typeof(Sprite), allowSceneObjects: false);
+                node.rightIllustrationPos = EditorGUILayout.Vector3Field("Right Illustration Pos", node.rightIllustrationPos);
+                node.rightIllustrationScale = EditorGUILayout.Vector3Field("Right Illustration Scale", node.rightIllustrationScale);
                 EditorGUILayout.EndVertical();
             }
 
@@ -151,6 +176,13 @@ public class DialogueTreeEditor : Editor
 
             EditorGUILayout.EndVertical();
         }
+    }
+
+    private void SwapNodes(int indexA, int indexB)
+    {
+        var temp = dialogueTreeData.nodes[indexA];
+        dialogueTreeData.nodes[indexA] = dialogueTreeData.nodes[indexB];
+        dialogueTreeData.nodes[indexB] = temp;
     }
 
     private void AddNewNode()
