@@ -22,7 +22,7 @@ namespace Scripts
         public void OnPlaySFX(AnimationEvent e)
         {
             float volume = e.floatParameter == 0 ? 1 : e.floatParameter;
-            AudioManager.Instance.PlaySFX(e.stringParameter, volume);
+            AudioManager.Instance.PlaySFX(e.stringParameter, volume, transform);
         }
 
         public void SetHitable(AnimationEvent e)

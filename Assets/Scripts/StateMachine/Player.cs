@@ -14,6 +14,8 @@ namespace Scripts.StateMachine
 
         private readonly int _attackHash = Animator.StringToHash("Attack");
 
+        private AudioListener _audioListener;
+
         protected override void SetState()
         {
             base.SetState();
@@ -28,7 +30,14 @@ namespace Scripts.StateMachine
             if (s_player == null || !s_player.GetInstanceID().Equals(GetInstanceID()))
             {
                 s_player = this;
-            } 
+            }
+
+            _audioListener = GetComponent<AudioListener>();
+
+            if (!_audioListener)
+            {
+                _audioListener = gameObject.AddComponent<AudioListener>();
+            }
         }
 
         protected override void OnDisable()
@@ -39,6 +48,8 @@ namespace Scripts.StateMachine
             {
                 s_player = null;
             }
+
+            Destroy(_audioListener);
         }
 
         private Vector2 GetInputMove()
@@ -200,19 +211,6 @@ namespace Scripts.StateMachine
             {
                 _animator.CrossFade(_deathHash, 0f);
                 _currentDeathTime = deathDurationTime;
-            }
-            else if (step == FSM.Step.Update)
-            {
-                _currentDeathTime -= Time.deltaTime;
-
-                if (_currentDeathTime <= 0)
-                {
-                    SceneManager.LoadScene(0);
-                }
-            }
-            else
-            {
-
             }
         }
 

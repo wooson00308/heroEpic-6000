@@ -65,7 +65,9 @@ namespace Scripts.StateMachine
         protected void OnDialogueEnd()
         {
             _isRunningDialogue = false;
-            _fsm.TransitionTo(IdleState);
+
+            if(!_animator.GetBool("Death"))
+                _fsm.TransitionTo(IdleState);
         }
 
         protected virtual void SetState()
@@ -88,7 +90,8 @@ namespace Scripts.StateMachine
         {
             if(step == FSM.Step.Enter)
             {
-                //_animator.CrossFade(_idleHash, 0);
+                if (_animator.GetBool("Run"))
+                    _animator.CrossFade(_idleHash, 0);
                 _unit.Stop(Vector3.zero);
             }
         }

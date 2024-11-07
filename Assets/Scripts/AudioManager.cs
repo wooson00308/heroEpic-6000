@@ -19,7 +19,7 @@ public class AudioManager : Singleton<AudioManager>
         InitializeAudioClips();
         InitializeSFXPool();
 
-        PlayMusic("BGM_1");
+        PlayMusic("BGM_1", 0.1f);
     }
 
     private void InitializeAudioClips()
@@ -62,21 +62,17 @@ public class AudioManager : Singleton<AudioManager>
         musicSource.Stop();
     }
 
-    public void PlaySFX(string clipName, float volume = 1f)
+    public void PlaySFX(string clipName, float volume = 1f, Transform parent = null)
     {
         if (audioClips.TryGetValue(clipName, out AudioClip clip))
         {
-            AudioSource availableSource = GetAvailableSFXSource();
+            AudioSource availableSource = GetAvailableSFXSource(parent);
             if (availableSource != null)
             {
                 availableSource.clip = clip;
                 availableSource.volume = volume;
                 availableSource.Play();
             }
-            //else
-            //{
-            //    Debug.LogWarning("No available SFX source in the pool.");
-            //}
         }
         else
         {
@@ -84,12 +80,21 @@ public class AudioManager : Singleton<AudioManager>
         }
     }
 
-    private AudioSource GetAvailableSFXSource()
+    private AudioSource GetAvailableSFXSource(Transform parent = null)
     {
         foreach (AudioSource source in sfxPool)
         {
             if (!source.isPlaying)
             {
+                if(parent != null)
+                {
+                    source.transform.parent = parent;
+                }
+                else
+                {
+                    source.transform.parent = transform;
+                }
+                
                 return source;
             }
         }
