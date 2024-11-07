@@ -157,6 +157,12 @@ namespace Scripts.StateMachine
             }
             else if (step == FSM.Step.Update)
             {
+                if (_isRunningDialogue)
+                {
+                    _fsm.TransitionTo(DialogueState);
+                    return;
+                }
+
                 Vector3 direction = GetDirection().normalized;
                 _unit.Stop(direction);
 
@@ -187,6 +193,12 @@ namespace Scripts.StateMachine
             }
             else if (step == FSM.Step.Update)
             {
+                if (_isRunningDialogue)
+                {
+                    _fsm.TransitionTo(DialogueState);
+                    return;
+                }
+
                 if (TryTransitionToPattern()) return;
 
                 Vector3 direction = GetDirection().normalized;

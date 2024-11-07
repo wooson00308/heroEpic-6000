@@ -20,6 +20,8 @@ namespace Scripts
         private BaseStateMachine _stateMachine;
         private bool _isHitable = true;
 
+        private bool _isRunningDialogue;
+
         [Header("Config")]
         public StatsData data;
         public Transform model;
@@ -42,11 +44,25 @@ namespace Scripts
         private void OnEnable()
         {
             hitBoxReceiver.OnHitReceive += OnHitEvent;
+            DialoguePresenter.Start += OnDialogueStart;
+            DialoguePresenter.End += OnDialogueEnd;
         }
 
         private void OnDisable()
         {
             hitBoxReceiver.OnHitReceive -= OnHitEvent;
+            DialoguePresenter.Start -= OnDialogueStart;
+            DialoguePresenter.End -= OnDialogueEnd;
+        }
+
+        private void OnDialogueStart()
+        {
+            _isRunningDialogue = true;
+        }
+
+        private void OnDialogueEnd()
+        {
+            _isRunningDialogue = false;
         }
 
         private void OnHitEvent(HitBoxData data)
@@ -138,6 +154,7 @@ namespace Scripts
         {
             _stateMachine.OnHit();
 
+            if (_isRunningDialogue) return;
             Health -= attacker.Damage;
 
             HealthBarPresenter.Update?.Invoke(this);

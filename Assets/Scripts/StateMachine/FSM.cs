@@ -26,8 +26,15 @@ namespace Scripts
             _currentState.Invoke(this, Step.Update, null);
         }
 
+        public bool IsRunningState(State state)
+        {
+            return state == _currentState;
+        }
+
         public void TransitionTo(State state)
         {
+            if (IsRunningState(state)) return;
+
             _currentState?.Invoke(this, Step.Exit, state);
             var oldState = _currentState;
             _currentState = state;

@@ -1,26 +1,30 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Scripts.UI
 {
     public class DialoguePresenter : BasePresenter<DialogueView, DialogueModel>
     {
-        public static Action<DialogueTreeData> Start;
+        public static Action<DialogueTreeData> InitializeDialogue;
+        public static Action Start;
         public static Action End;
 
         private void OnEnable()
         {
-            Start += InitializeDialogue;
+            InitializeDialogue += OnInitializeDialogue;
         }
 
         private void OnDisable()
         {
-            Start -= InitializeDialogue;
+            InitializeDialogue -= OnInitializeDialogue;
         }
 
         // 다이얼로그 트리를 초기화하고 UI 업데이트
-        public void InitializeDialogue(DialogueTreeData dialogueTreeData)
+        public void OnInitializeDialogue(DialogueTreeData dialogueTreeData)
         {
+            Start?.Invoke();
+
             Model.SetDialogueTree(dialogueTreeData);
 
             View.SetActive(true);

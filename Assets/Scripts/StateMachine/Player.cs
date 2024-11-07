@@ -21,16 +21,20 @@ namespace Scripts.StateMachine
             _attackState = AttackState;
         }
 
-        private void OnEnable()
+        protected override void OnEnable()
         {
+            base.OnEnable();
+
             if (s_player == null || !s_player.GetInstanceID().Equals(GetInstanceID()))
             {
                 s_player = this;
             } 
         }
 
-        private void OnDisable()
+        protected override void OnDisable()
         {
+            base.OnDisable();
+
             if(s_player.GetInstanceID().Equals(GetInstanceID()))
             {
                 s_player = null;
@@ -65,13 +69,19 @@ namespace Scripts.StateMachine
 
         protected override void IdleState(FSM fsm, FSM.Step step, FSM.State state)
         {
-            if(step == FSM.Step.Enter)
+            if (step == FSM.Step.Enter)
             {
                 _animator.CrossFade(_idleHash, 0f);
             }
             else if(step == FSM.Step.Update)
             {
-                if(_inputMouse.isInput)
+                if (_isRunningDialogue)
+                {
+                    _fsm.TransitionTo(DialogueState);
+                    return;
+                }
+
+                if (_inputMouse.isInput)
                 {
                     _fsm.TransitionTo(AttackState);
                     return;
@@ -96,7 +106,13 @@ namespace Scripts.StateMachine
             }
             else if (step == FSM.Step.Update)
             {
-                _animator.CrossFade(_runHash, 0f);
+                if (_isRunningDialogue)
+                {
+                    _fsm.TransitionTo(DialogueState);
+                    return;
+                }
+
+                //_animator.CrossFade(_runHash, 0f);
 
                 if (_inputMove != Vector2.zero)
                 {

@@ -1,3 +1,4 @@
+using Scripts.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,18 +27,45 @@ namespace Scripts.StateMachine
 
         public Unit Unit => _unit;
         public Animator Animator => _animator;
+
+        protected bool _isRunningDialogue;
+
         protected virtual void Awake()
         {
             _unit = GetComponent<Unit>();
             _animator = GetComponentInChildren<Animator>();
         }
 
-        private void Start()
+        protected void Start()
         {
             SetState();
 
             _fsm = new FSM();
             _fsm.Start(_idleState);
+        }
+
+        protected virtual void OnEnable()
+        {
+            DialoguePresenter.Start += OnDialogueStart;
+            DialoguePresenter.End += OnDialogueEnd;
+        }
+
+        protected virtual void OnDisable()
+        {
+            DialoguePresenter.Start -= OnDialogueStart;
+            DialoguePresenter.End -= OnDialogueEnd;
+        }
+
+        protected void OnDialogueStart()
+        {
+            _isRunningDialogue = true;
+            _fsm.TransitionTo(DialogueState);
+        }
+
+        protected void OnDialogueEnd()
+        {
+            _isRunningDialogue = false;
+            _fsm.TransitionTo(IdleState);
         }
 
         protected virtual void SetState()
@@ -50,7 +78,19 @@ namespace Scripts.StateMachine
 
         public virtual void OnUpdate()
         {
-            _fsm.OnUpdate();
+            if(!_isRunningDialogue)
+            {
+                _fsm.OnUpdate();
+            }
+        }
+
+        protected virtual void DialogueState(FSM fsm, FSM.Step step, FSM.State state)
+        {
+            if(step == FSM.Step.Enter)
+            {
+                //_animator.CrossFade(_idleHash, 0);
+                _unit.Stop(Vector3.zero);
+            }
         }
 
         protected abstract void IdleState(FSM fsm, FSM.Step step, FSM.State state);

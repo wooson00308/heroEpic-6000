@@ -1,7 +1,8 @@
 using Scripts.UI;
+using System;
 using UnityEngine;
 
-public class DialogueDemo : MonoBehaviour
+public class DialogueSimulator : MonoBehaviour
 {
     public DialogueTreeData data;
 
@@ -28,7 +29,7 @@ public class DialogueDemo : MonoBehaviour
         if (!_isRunningDialogue && Input.GetKeyDown(KeyCode.KeypadPlus))
         {
             _isRunningDialogue = true;
-            DialoguePresenter.Start?.Invoke(data);
+            DialoguePresenter.InitializeDialogue?.Invoke(data);
         }
     }
 }
