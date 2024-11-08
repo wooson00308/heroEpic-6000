@@ -240,7 +240,7 @@ namespace Scripts.StateMachine
             {
                 _animator.CrossFade(_hitHash, 0f);
                 _unit.Stop(Vector3.zero, false);
-                _unit.Emotion(EmotionType.Anger);
+                _unit.Emotion(EmotionType.Shock);
             }
             else if (step == FSM.Step.Update)
             {

@@ -12,7 +12,7 @@ namespace Scripts.StateMachine
             if (step == FSM.Step.Enter)
             {
                 _animator.CrossFade(_runHash, 0f);
-                _unit.Emotion(EmotionType.Sigh);
+                _unit.Emotion(EmotionType.Anger);
             }
             else if (step == FSM.Step.Update)
             {
