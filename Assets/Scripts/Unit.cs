@@ -33,6 +33,7 @@ namespace Scripts
 
         [Header("Another")]
         public Animator _emotion;
+        public AttackEffect _hitEffect;
 
         public string DisplayName { get; set; }
         public int Health { get; set; }
@@ -163,7 +164,23 @@ namespace Scripts
             _stateMachine.OnHit();
 
             if (_isRunningDialogue) return;
-            Health -= attacker.Damage;
+
+            int criticalRandom = Random.Range(0, 10);
+
+            int criticalDamage = attacker.Damage * 2;
+
+            bool isCritical = criticalRandom > 8;
+
+            if (isCritical)
+            {
+                Health -= criticalDamage;
+            }
+            else
+            {
+                Health -= attacker.Damage;
+            }
+
+            _hitEffect.OnAttack(isCritical);
 
             HealthBarPresenter.Update?.Invoke(this);
 

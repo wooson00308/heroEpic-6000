@@ -1067,7 +1067,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -875503347
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -1910,7 +1910,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000034f383b5d31bcf90de1d0cb33adc05b9704f7b3
+  m_ApplyToSortingLayers: 00000000034f383b5d31bcf90de1d0cb33adc05b9704f7b387ee2cf6
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -2816,6 +2816,22 @@ PrefabInstance:
     - target: {fileID: 7721199285264430534, guid: 65834e83b5fe80444812e1acbf7a15f1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8660738726110069838, guid: 65834e83b5fe80444812e1acbf7a15f1, type: 3}
+      propertyPath: m_Size.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8660738726110069838, guid: 65834e83b5fe80444812e1acbf7a15f1, type: 3}
+      propertyPath: m_Size.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8660738726110069838, guid: 65834e83b5fe80444812e1acbf7a15f1, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 5407164698605751720, guid: fd9641d8608c2c84f9fcd0bd33b52216, type: 3}
+    - target: {fileID: 8660738726110069838, guid: 65834e83b5fe80444812e1acbf7a15f1, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3778,7 +3794,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -875503347
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}

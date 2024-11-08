@@ -160,6 +160,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4144587090703991133}
     - target: {fileID: 7413031855206635387, guid: 34950459f5c759640889bb1e3afda15a, type: 3}
+      propertyPath: _hitEffect
+      value: 
+      objectReference: {fileID: 2203035734123051477}
+    - target: {fileID: 7413031855206635387, guid: 34950459f5c759640889bb1e3afda15a, type: 3}
       propertyPath: hitBoxCaster
       value: 
       objectReference: {fileID: 2311609914337376537}
@@ -361,6 +365,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0148aa8e5222421469bbf942425a1092, type: 3}
+--- !u!114 &2203035734123051477 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4775618096355925256, guid: 0148aa8e5222421469bbf942425a1092, type: 3}
+  m_PrefabInstance: {fileID: 6689153903329387741}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdc73f2debbd94548aa038e0833c7084, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &4144587090703991133 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 7300385611314718080, guid: 0148aa8e5222421469bbf942425a1092, type: 3}

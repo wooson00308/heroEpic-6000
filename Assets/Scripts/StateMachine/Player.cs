@@ -73,6 +73,12 @@ namespace Scripts.StateMachine
 
         public override void OnUpdate()
         {
+            if(Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene(0);
+                return;
+            }
+
             _inputMove = GetInputMove();
             _inputMouse = GetInputAttack();
             base.OnUpdate();

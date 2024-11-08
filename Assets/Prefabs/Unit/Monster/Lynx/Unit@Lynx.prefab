@@ -69,6 +69,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1175727585096237099}
     - target: {fileID: 3134295797565337060, guid: 78fe6ee1226ff1243b4effbb873dc2dd, type: 3}
+      propertyPath: _emotion
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3134295797565337060, guid: 78fe6ee1226ff1243b4effbb873dc2dd, type: 3}
+      propertyPath: _hitEffect
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3134295797565337060, guid: 78fe6ee1226ff1243b4effbb873dc2dd, type: 3}
       propertyPath: hitBoxCaster
       value: 
       objectReference: {fileID: 4327723917163576283}

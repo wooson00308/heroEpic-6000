@@ -48,6 +48,9 @@ TagManager:
   - name: Emotion
     uniqueID: 3019310231
     locked: 0
+  - name: Fx
+    uniqueID: 4130139783
+    locked: 0
   - name: Alert
     uniqueID: 4189860189
     locked: 0
