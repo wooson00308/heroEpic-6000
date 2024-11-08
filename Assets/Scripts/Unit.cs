@@ -31,6 +31,9 @@ namespace Scripts
         public HitBoxCaster hitBoxCaster;
         public HitBoxReceiver hitBoxReceiver;
 
+        [Header("Another")]
+        public Animator _emotion;
+
         public string DisplayName { get; set; }
         public int Health { get; set; }
         public float RunSpeed { get; set; }
@@ -107,6 +110,11 @@ namespace Scripts
             {
                 _modelRenderer.sortingOrder = Mathf.RoundToInt(-model.position.y * 100);
             }
+        }
+
+        public void Emotion(EmotionType type)
+        {
+            _emotion.CrossFade(type.ToString(), 0);
         }
 
         public void Stop(Vector3 dir, bool isRotation = true)

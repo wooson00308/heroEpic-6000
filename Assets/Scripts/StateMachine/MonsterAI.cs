@@ -154,6 +154,7 @@ namespace Scripts.StateMachine
             if (step == FSM.Step.Enter)
             {
                 _animator.CrossFade(_idleHash, 0f);
+                _unit.Emotion(EmotionType.Whisper);
             }
             else if (step == FSM.Step.Update)
             {
@@ -239,6 +240,7 @@ namespace Scripts.StateMachine
             {
                 _animator.CrossFade(_hitHash, 0f);
                 _unit.Stop(Vector3.zero, false);
+                _unit.Emotion(EmotionType.Anger);
             }
             else if (step == FSM.Step.Update)
             {
@@ -257,6 +259,7 @@ namespace Scripts.StateMachine
             {
                 _animator.CrossFade(_deathHash, 0f);
                 _unit.Stop(Vector3.zero, false);
+                _unit.Emotion(EmotionType.Sad);
                 _currentDeathTime = deathDurationTime;
             }
             else if (step == FSM.Step.Update)

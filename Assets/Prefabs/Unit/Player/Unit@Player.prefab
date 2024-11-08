@@ -85,6 +85,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2854886308270147621}
     - target: {fileID: 7413031855206635387, guid: 34950459f5c759640889bb1e3afda15a, type: 3}
+      propertyPath: _emotion
+      value: 
+      objectReference: {fileID: 4789855571821855356}
+    - target: {fileID: 7413031855206635387, guid: 34950459f5c759640889bb1e3afda15a, type: 3}
       propertyPath: hitBoxCaster
       value: 
       objectReference: {fileID: 8842722344107324999}
@@ -226,5 +230,10 @@ PrefabInstance:
 --- !u!4 &2854886308270147621 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5227343098478692840, guid: 1ae70118c5309294ca4990523a72ccb5, type: 3}
+  m_PrefabInstance: {fileID: 8004540455921910221}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4789855571821855356 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3273320201032434609, guid: 1ae70118c5309294ca4990523a72ccb5, type: 3}
   m_PrefabInstance: {fileID: 8004540455921910221}
   m_PrefabAsset: {fileID: 0}

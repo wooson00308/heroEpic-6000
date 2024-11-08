@@ -45,6 +45,9 @@ TagManager:
   - name: Unit
     uniqueID: 993545987
     locked: 0
+  - name: Emotion
+    uniqueID: 3019310231
+    locked: 0
   - name: Alert
     uniqueID: 4189860189
     locked: 0

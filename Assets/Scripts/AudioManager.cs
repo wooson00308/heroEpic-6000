@@ -88,11 +88,11 @@ public class AudioManager : Singleton<AudioManager>
             {
                 if(parent != null)
                 {
-                    source.transform.parent = parent;
+                    source.transform.position = parent.position;
                 }
                 else
                 {
-                    source.transform.parent = transform;
+                    source.transform.localPosition = Vector3.zero;
                 }
                 
                 return source;
