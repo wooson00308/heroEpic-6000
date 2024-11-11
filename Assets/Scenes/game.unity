@@ -2482,7 +2482,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc13359fb9e107d4893d88f6a953d613, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _data: {fileID: 0}
 --- !u!4 &947120514
 Transform:
   m_ObjectHideFlags: 0
@@ -3282,6 +3281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5fa2ae6657ce794895edf9e0537931d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dialogueView: {fileID: 1648185577}
   _introDialogue: {fileID: 11400000, guid: 731f94e30e8c0e64a90c6c7c7c8eb67c, type: 2}
   _unit: {fileID: 416183661}
   _goblins:

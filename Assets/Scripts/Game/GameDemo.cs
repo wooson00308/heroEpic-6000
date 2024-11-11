@@ -6,15 +6,27 @@ using UnityEngine;
 
 public class GameDemo : MonoBehaviour
 {
+    public DialogueView _dialogueView;
     public DialogueTreeData _introDialogue;
     public Unit _unit;
     public List<Unit> _goblins;
 
     public Transform _introMovePoint;
 
+    private bool _canNextDialogue;
+
     private void Start()
     {
         StartCoroutine(StartIntro());
+    }
+
+    private void Update()
+    {
+        if (!_canNextDialogue) return;
+        if(Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.KeypadEnter))
+        {
+            _dialogueView.OnNextDialogue();
+        }
     }
 
     private IEnumerator StartIntro()
@@ -40,9 +52,12 @@ public class GameDemo : MonoBehaviour
 
     private void UpdateIntroAction(int index)
     {
-        if(index == 0)
+        _canNextDialogue = false;
+
+        if (index == 0)
         {
             _unit.Emotion(EmotionType.Whisper);
+            _canNextDialogue = true;
         }
         if(index == 1)
         {
@@ -50,14 +65,17 @@ public class GameDemo : MonoBehaviour
         }
         if(index == 2)
         {
-            _unit.Emotion(EmotionType.Dispirit);
+            StartCoroutine(Index2Logic());
         }
         if(index == 3)
         {
             foreach (var goblin in _goblins)
             {
                 goblin.Emotion(EmotionType.Anger);
+                goblin.StateMachine.Animator.CrossFade("Pattern 1", 0);
             }
+
+            _canNextDialogue = true;
         }
     }
 
@@ -84,6 +102,17 @@ public class GameDemo : MonoBehaviour
         {
             goblin.Emotion(EmotionType.Sigh);
         }
+
+        _canNextDialogue = true;
+    }
+
+    private IEnumerator Index2Logic()
+    {
+        _unit.Emotion(EmotionType.Dispirit);
+        yield return new WaitForSeconds(1f); 
+        _unit.StateMachine.Animator.CrossFade("Attack", 0);
+
+        _canNextDialogue = true;
     }
 
     private void EndIntroAction()

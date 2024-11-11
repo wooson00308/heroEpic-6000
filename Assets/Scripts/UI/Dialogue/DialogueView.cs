@@ -13,20 +13,19 @@ namespace Scripts.UI
         public float _maxDisplayDuration = 5f;
         private bool _isUpdatingView;
 
+
         private void OnEnable()
         {
             BindUI();
             SetActive(false);
         }
 
-        private void Update()
+        public void OnNextDialogue()
         {
             if (!Get<GameObject>((int)GameObjects.View).activeSelf) return;
-            // 선택지가 2개 미만일 때, 마우스 클릭이나 엔터키로 다음 대화 요청
-            if (!_isUpdatingView && Input.GetKeyDown(KeyCode.KeypadEnter))
-            {
-                OnNextDialogueRequest?.Invoke();
-            }
+            if (_isUpdatingView) return;
+
+            OnNextDialogueRequest?.Invoke();
         }
 
         public enum GameObjects
