@@ -2,9 +2,9 @@ using Scripts.UI;
 using System;
 using UnityEngine;
 
-public class DialogueSimulator : MonoBehaviour
+public class DialogueSimulator : Singleton<DialogueSimulator>
 {
-    public DialogueTreeData data;
+    public DialogueTreeData _data;
 
     private bool _isRunningDialogue;
 
@@ -23,13 +23,12 @@ public class DialogueSimulator : MonoBehaviour
         _isRunningDialogue = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Initialized(DialogueTreeData data)
     {
-        if (!_isRunningDialogue && Input.GetKeyDown(KeyCode.KeypadPlus))
-        {
-            _isRunningDialogue = true;
-            DialoguePresenter.InitializeDialogue?.Invoke(data);
-        }
+        if (_isRunningDialogue) return;
+        _isRunningDialogue = true;
+
+        _data = data;
+        DialoguePresenter.InitializeDialogue?.Invoke(_data);
     }
 }

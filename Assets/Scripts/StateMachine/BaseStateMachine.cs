@@ -90,8 +90,8 @@ namespace Scripts.StateMachine
         {
             if(step == FSM.Step.Enter)
             {
-                if (_animator.GetBool("Run"))
-                    _animator.CrossFade(_idleHash, 0);
+                _animator.CrossFade(_idleHash, 0);
+
                 _unit.Stop(Vector3.zero);
             }
         }

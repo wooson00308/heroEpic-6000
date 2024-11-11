@@ -260,7 +260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathDurationTime: 2
-  chaseDistance: 10
+  chaseDistance: 20
   minChaseDistance: 2
   chaseBufferRange: 0.1
   patternConditions:

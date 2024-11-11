@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2873034e2895e034c975f3e225fbe00e, type: 3}
+  m_Name: "\uC778\uD2B8\uB85C \uB2E4\uC774\uC5BC\uB85C\uADF8"
+  m_EditorClassIdentifier: 
+  nodes:
+  - nodeId: Node_1
+    leftDisplayName: ???
+    leftIllustration: {fileID: -7957278214813060823, guid: c50b517797d93614aac4ca58aaf97355, type: 3}
+    leftIllustrationPos: {x: 0, y: 0, z: 0}
+    leftIllustrationScale: {x: 0, y: 0, z: 0}
+    rightDisplayName: Right Speaker
+    rightIllustration: {fileID: 0}
+    rightIllustrationPos: {x: 0, y: 0, z: 0}
+    rightIllustrationScale: {x: 0, y: 0, z: 0}
+    isLeftSpeaker: 1
+    dialogueText: "\uC5EC\uAE30\uAC00 \uBC29\uC8FC \uB0B4\uBD80\uC778\uAC00.."
+    childNodes:
+    - id: Node_2
+      optionText: Option Text
+  - nodeId: Node_2
+    leftDisplayName: ???
+    leftIllustration: {fileID: 4723107735738678597, guid: 0bd97e23f8b532a4f8969605a3b00a4e, type: 3}
+    leftIllustrationPos: {x: 0, y: 0, z: 0}
+    leftIllustrationScale: {x: 0, y: 0, z: 0}
+    rightDisplayName: Right Speaker
+    rightIllustration: {fileID: 0}
+    rightIllustrationPos: {x: 0, y: 0, z: 0}
+    rightIllustrationScale: {x: 0, y: 0, z: 0}
+    isLeftSpeaker: 1
+    dialogueText: "\uC0AC\uBC29\uC774 \uACE0\uBE14\uB9B0 \uCC9C\uC9C0\uAD70, \uCCAD\uC18C
+      \uD560 \uD544\uC694\uAC00 \uC788\uACA0\uC5B4"
+    childNodes:
+    - id: Node_3
+      optionText: Option Text
+  - nodeId: Node_3
+    leftDisplayName: ???
+    leftIllustration: {fileID: 6934013284892070054, guid: c50b517797d93614aac4ca58aaf97355, type: 3}
+    leftIllustrationPos: {x: 0, y: 0, z: 0}
+    leftIllustrationScale: {x: 0, y: 0, z: 0}
+    rightDisplayName: "\uACE0\uBE14\uB9B0"
+    rightIllustration: {fileID: -7763475090823894447, guid: f84c06efa9991bd49b5553f54f400348, type: 3}
+    rightIllustrationPos: {x: 0, y: 0, z: 0}
+    rightIllustrationScale: {x: 0, y: 0, z: 0}
+    isLeftSpeaker: 0
+    dialogueText: "\uD0A4\uC5D0\uC5D0-\uC5D1!!"
+    childNodes: []

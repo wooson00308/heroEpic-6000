@@ -22,6 +22,8 @@ namespace Scripts
 
         private bool _isRunningDialogue;
 
+        public BaseStateMachine StateMachine => _stateMachine;
+
         [Header("Config")]
         public StatsData data;
         public Transform model;
@@ -139,6 +141,11 @@ namespace Scripts
             _agent.isStopped = false;
             _agent.speed = RunSpeed;
             _agent.SetDestination(target.position);
+        }
+
+        public void ResetPath()
+        {
+            _agent.ResetPath();
         }
 
         public void BackMoveAgent(Vector3 dir)

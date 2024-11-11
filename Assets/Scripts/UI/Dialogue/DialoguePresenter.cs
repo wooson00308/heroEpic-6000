@@ -8,7 +8,10 @@ namespace Scripts.UI
     {
         public static Action<DialogueTreeData> InitializeDialogue;
         public static Action Start;
+        public static Action<int> Update;
         public static Action End;
+
+        private int _dialogueIndex;
 
         private void OnEnable()
         {
@@ -31,6 +34,9 @@ namespace Scripts.UI
 
             View.OnNextDialogueRequest += HandleNextDialogueRequest;
             View.UpdateUI(Model);
+
+            _dialogueIndex = 0;
+            Update?.Invoke(_dialogueIndex);
         }
 
         // 선택한 인덱스에 따라 다음 다이얼로그로 진행하고 UI 업데이트
@@ -40,6 +46,8 @@ namespace Scripts.UI
             {
                 Model.MoveToNextNode(choiceIndex);
                 View.UpdateUI(Model);
+
+                Update?.Invoke(++_dialogueIndex);
             }
             else
             {

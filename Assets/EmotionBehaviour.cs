@@ -16,7 +16,6 @@ public class EmotionBehaviour : StateMachineBehaviour
         renderer.enabled = emotion != EmotionType.None;
 
         animator.SetInteger("Emotion", (int)emotion);
-
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
