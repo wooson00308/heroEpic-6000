@@ -13,9 +13,23 @@ MonoBehaviour:
   m_Name: "\uC778\uD2B8\uB85C \uB2E4\uC774\uC5BC\uB85C\uADF8"
   m_EditorClassIdentifier: 
   nodes:
+  - nodeId: Node_0
+    leftDisplayName: ???
+    leftIllustration: {fileID: 4723107735738678597, guid: 0bd97e23f8b532a4f8969605a3b00a4e, type: 3}
+    leftIllustrationPos: {x: 0, y: 0, z: 0}
+    leftIllustrationScale: {x: 0, y: 0, z: 0}
+    rightDisplayName: Right Speaker
+    rightIllustration: {fileID: 0}
+    rightIllustrationPos: {x: 0, y: 0, z: 0}
+    rightIllustrationScale: {x: 0, y: 0, z: 0}
+    isLeftSpeaker: 1
+    dialogueText: ...
+    childNodes:
+    - id: Node_1
+      optionText: Option Text
   - nodeId: Node_1
     leftDisplayName: ???
-    leftIllustration: {fileID: -7957278214813060823, guid: c50b517797d93614aac4ca58aaf97355, type: 3}
+    leftIllustration: {fileID: 4723107735738678597, guid: 0bd97e23f8b532a4f8969605a3b00a4e, type: 3}
     leftIllustrationPos: {x: 0, y: 0, z: 0}
     leftIllustrationScale: {x: 0, y: 0, z: 0}
     rightDisplayName: Right Speaker
@@ -29,7 +43,7 @@ MonoBehaviour:
       optionText: Option Text
   - nodeId: Node_2
     leftDisplayName: ???
-    leftIllustration: {fileID: 4723107735738678597, guid: 0bd97e23f8b532a4f8969605a3b00a4e, type: 3}
+    leftIllustration: {fileID: 6934013284892070054, guid: c50b517797d93614aac4ca58aaf97355, type: 3}
     leftIllustrationPos: {x: 0, y: 0, z: 0}
     leftIllustrationScale: {x: 0, y: 0, z: 0}
     rightDisplayName: Right Speaker
@@ -52,5 +66,6 @@ MonoBehaviour:
     rightIllustrationPos: {x: 0, y: 0, z: 0}
     rightIllustrationScale: {x: 0, y: 0, z: 0}
     isLeftSpeaker: 0
-    dialogueText: "\uD0A4\uC5D0\uC5D0-\uC5D1!!"
+    dialogueText: "\uD0A4\uC5D0\uC5D0-\uC5D1!! \uC8FD-\uC778\uB2E4!! \uC778\uAC04!
+      \uCF00\uCF01!"
     childNodes: []

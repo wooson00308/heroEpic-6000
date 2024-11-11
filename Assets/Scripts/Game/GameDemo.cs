@@ -42,13 +42,17 @@ public class GameDemo : MonoBehaviour
     {
         if(index == 0)
         {
-            StartCoroutine(Index0Logic());
+            _unit.Emotion(EmotionType.Whisper);
         }
         if(index == 1)
         {
-            _unit.Emotion(EmotionType.Whisper);
+            StartCoroutine(Index1Logic());
         }
         if(index == 2)
+        {
+            _unit.Emotion(EmotionType.Dispirit);
+        }
+        if(index == 3)
         {
             foreach (var goblin in _goblins)
             {
@@ -57,11 +61,11 @@ public class GameDemo : MonoBehaviour
         }
     }
 
-    private IEnumerator Index0Logic()
+    private IEnumerator Index1Logic()
     {
         _unit.Emotion(EmotionType.Whisper);
 
-        yield return new WaitForSeconds(.8f);
+        yield return new WaitForSeconds(1.5f);
 
         _unit.RunAgentToTarget(_introMovePoint);
 

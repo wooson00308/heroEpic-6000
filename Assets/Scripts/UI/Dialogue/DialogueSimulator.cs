@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class DialogueSimulator : Singleton<DialogueSimulator>
 {
-    public DialogueTreeData _data;
-
+    private DialogueTreeData _data;
     private bool _isRunningDialogue;
 
     private void OnEnable()
