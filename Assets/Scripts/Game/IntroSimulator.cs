@@ -4,12 +4,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameDemo : MonoBehaviour
+public class IntroSimulator : MonoBehaviour
 {
     public DialogueView _dialogueView;
     public DialogueTreeData _introDialogue;
     public Unit _unit;
     public List<Unit> _goblins;
+    public QuestData _introQuest;
 
     public Transform _introMovePoint;
 
@@ -119,5 +120,7 @@ public class GameDemo : MonoBehaviour
     {
         DialoguePresenter.Update -= UpdateIntroAction;
         DialoguePresenter.End -= EndIntroAction;
+
+        QuestSystem.Instance.OnActive(_introQuest);
     }
 }

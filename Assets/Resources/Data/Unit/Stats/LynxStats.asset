@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a5f657651c91554194c07c533322917, type: 3}
   m_Name: LynxStats
   m_EditorClassIdentifier: 
+  id: 201
   displayName: "\uC801"
   health: 150
   damage: 5

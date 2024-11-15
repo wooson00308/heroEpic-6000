@@ -4,6 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "StatsData", menuName = "Scriptable Objects/StatsData")]
 public class StatsData : ScriptableObject, IStatsSetable
 {
+    public int id;
     public string displayName;
     public int health;
     public int damage;

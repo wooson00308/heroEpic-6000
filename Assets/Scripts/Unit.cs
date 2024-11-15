@@ -49,6 +49,8 @@ namespace Scripts
 
         private void OnEnable()
         {
+            IsDeath = false;
+
             hitBoxReceiver.OnHitReceive += OnHitEvent;
             DialoguePresenter.Start += OnDialogueStart;
             DialoguePresenter.End += OnDialogueEnd;
@@ -199,10 +201,15 @@ namespace Scripts
 
         public void OnDeath(Unit attacker)
         {
+            if (IsDeath) return;
+            IsDeath = true;
+
             hitBoxCaster.enabled = false;
             hitBoxReceiver.enabled = false;
 
             _stateMachine.OnDeath();
+
+            QuestSystem.Instance.UpdateSubQuest?.Invoke(data.id, 1);
         }
     }
 }

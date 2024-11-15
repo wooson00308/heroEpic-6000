@@ -10,9 +10,11 @@ namespace Scripts.UI
     {
         public event Action OnNextDialogueRequest; // 다음 대화 요청 이벤트
 
-        public float _maxDisplayDuration = 5f;
         private bool _isUpdatingView;
+        private float _currentTime;
 
+        public float _maxDisplayDuration = 5f;
+        public float _skipDelay = .1f;
 
         private void OnEnable()
         {
@@ -162,11 +164,23 @@ namespace Scripts.UI
                     int contentSize = content.Length;
                     float displayDuration = Mathf.Min(_maxDisplayDuration, contentSize * 0.1f); // 글자 길이에 따라 최대 5초 내에서 조절
 
+                    _currentTime = 0;
+
                     text.text = string.Empty;
                     text.DOText(content, displayDuration, true, ScrambleMode.None)
                         .OnComplete(() =>
                         {
                             _isUpdatingView = false;
+                        })
+                        .OnUpdate(() =>
+                        {
+                            _currentTime += Time.deltaTime; 
+                            if (_currentTime < _skipDelay) return;
+
+                            if ((Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetMouseButtonDown(0)) && _isUpdatingView)
+                            {
+                                text.DOComplete();
+                            }
                         });
                 }
                 else
@@ -177,7 +191,6 @@ namespace Scripts.UI
                 }
             }
         }
-
 
         private void SetImage(Images imageElement, Sprite sprite)
         {
